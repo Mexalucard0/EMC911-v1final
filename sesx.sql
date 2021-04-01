@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 09:14 AM
+-- Generation Time: Apr 01, 2021 at 11:52 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -48,6 +48,7 @@ INSERT INTO `addon_account` (`name`, `label`, `shared`) VALUES
 ('property_black_money', 'Money Sale Property', 0),
 ('society_ambulance', 'Ambulance', 1),
 ('society_banker', 'Bank', 1),
+('society_cardealer', 'Car Dealer', 1),
 ('society_mechanic', 'Mechanic', 1),
 ('society_police', 'Police', 1),
 ('society_police_black_money', 'Police black money ', 1),
@@ -67,6 +68,29 @@ CREATE TABLE `addon_account_data` (
   `money` int(11) NOT NULL,
   `owner` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `addon_account_data`
+--
+
+INSERT INTO `addon_account_data` (`id`, `account_name`, `money`, `owner`) VALUES
+(93, 'society_cardealer', 0, NULL),
+(94, 'society_ambulance', 0, NULL),
+(95, 'society_banker', 0, NULL),
+(96, 'society_mechanic', 0, NULL),
+(97, 'society_police', 0, NULL),
+(98, 'society_police_black_money', 0, NULL),
+(99, 'society_police_money', 0, NULL),
+(100, 'society_realestateagent', 0, NULL),
+(101, 'society_taxi', 0, NULL),
+(102, 'bag_black_money', 0, 'steam:1100001121b6bdb'),
+(103, 'bag_money', 0, 'steam:1100001121b6bdb'),
+(104, 'caution', 0, 'steam:1100001121b6bdb'),
+(105, 'bank_savings', 0, 'steam:1100001121b6bdb'),
+(106, 'locker', 0, 'steam:1100001121b6bdb'),
+(107, 'locker_black', 0, 'steam:1100001121b6bdb'),
+(108, 'locker_cash', 0, 'steam:1100001121b6bdb'),
+(109, 'property_black_money', 0, 'steam:1100001121b6bdb');
 
 -- --------------------------------------------------------
 
@@ -89,6 +113,7 @@ INSERT INTO `addon_inventory` (`name`, `label`, `shared`) VALUES
 ('locker', 'Locker', 0),
 ('property', 'Property', 0),
 ('society_ambulance', 'Ambulance', 1),
+('society_cardealer', 'Car Dealer', 1),
 ('society_mechanic', 'Mechanic', 1),
 ('society_police', 'Police', 1),
 ('society_taxi', 'Taxi', 1);
@@ -181,6 +206,23 @@ CREATE TABLE `datastore_data` (
   `data` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `datastore_data`
+--
+
+INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
+(116, 'society_ambulance', NULL, '{}'),
+(117, 'society_mechanic', NULL, '{}'),
+(118, 'society_police', NULL, '{}'),
+(119, 'society_taxi', NULL, '{}'),
+(120, 'bag', 'steam:1100001121b6bdb', '{}'),
+(121, 'locker', 'steam:1100001121b6bdb', '{}'),
+(122, 'property', 'steam:1100001121b6bdb', '{}'),
+(123, 'user_mask', 'steam:1100001121b6bdb', '{}'),
+(124, 'user_glasses', 'steam:1100001121b6bdb', '{}'),
+(125, 'user_helmet', 'steam:1100001121b6bdb', '{}'),
+(126, 'user_ears', 'steam:1100001121b6bdb', '{}');
+
 -- --------------------------------------------------------
 
 --
@@ -202,6 +244,13 @@ CREATE TABLE `dpkeybinds` (
   `keybind6` varchar(50) DEFAULT 'num9',
   `emote6` varchar(255) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dpkeybinds`
+--
+
+INSERT INTO `dpkeybinds` (`id`, `keybind1`, `emote1`, `keybind2`, `emote2`, `keybind3`, `emote3`, `keybind4`, `emote4`, `keybind5`, `emote5`, `keybind6`, `emote6`) VALUES
+('steam:1100001121b6bdb', 'num4', '', 'num5', '', 'num6', '', 'num7', '', 'num8', '', 'num9', '');
 
 -- --------------------------------------------------------
 
@@ -458,6 +507,7 @@ CREATE TABLE `jobs` (
 INSERT INTO `jobs` (`name`, `label`, `whitelisted`) VALUES
 ('ambulance', 'Ambulance', 0),
 ('banker', 'Banker', 0),
+('cardealer', 'Car Dealer', 0),
 ('fisherman', 'Fisherman', 0),
 ('fueler', 'Fueler', 0),
 ('lumberjack', 'Lumberjack', 0),
@@ -528,7 +578,11 @@ INSERT INTO `job_grades` (`id`, `job_name`, `grade`, `name`, `label`, `salary`, 
 (37, 'taxi', 1, 'novice', 'Cabby', 24, '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":32,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":31,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":0,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":27,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":0,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":0,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":10,\"pants_1\":24}', '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":57,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":38,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":1,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":21,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":1,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":5,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":49,\"pants_1\":11}'),
 (38, 'taxi', 2, 'experimente', 'Experienced', 36, '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":26,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":57,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":4,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":11,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":0,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":0,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":0,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":10,\"pants_1\":24}', '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":57,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":38,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":1,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":21,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":1,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":5,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":49,\"pants_1\":11}'),
 (39, 'taxi', 3, 'uber', 'Uber Cabby', 48, '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":26,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":57,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":4,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":11,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":0,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":0,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":0,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":10,\"pants_1\":24}', '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":57,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":38,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":1,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":21,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":1,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":5,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":49,\"pants_1\":11}'),
-(40, 'taxi', 4, 'boss', 'Lead Cabby', 0, '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":29,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":31,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":4,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":1,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":0,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":0,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":0,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":4,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":10,\"pants_1\":24}', '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":57,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":38,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":1,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":21,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":1,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":5,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":49,\"pants_1\":11}');
+(40, 'taxi', 4, 'boss', 'Lead Cabby', 0, '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":29,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":31,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":4,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":1,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":0,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":0,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":0,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":4,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":10,\"pants_1\":24}', '{\"hair_2\":0,\"hair_color_2\":0,\"torso_1\":57,\"bags_1\":0,\"helmet_2\":0,\"chain_2\":0,\"eyebrows_3\":0,\"makeup_3\":0,\"makeup_2\":0,\"tshirt_1\":38,\"makeup_1\":0,\"bags_2\":0,\"makeup_4\":0,\"eyebrows_4\":0,\"chain_1\":0,\"lipstick_4\":0,\"bproof_2\":0,\"hair_color_1\":0,\"decals_2\":0,\"pants_2\":1,\"age_2\":0,\"glasses_2\":0,\"ears_2\":0,\"arms\":21,\"lipstick_1\":0,\"ears_1\":-1,\"mask_2\":0,\"sex\":1,\"lipstick_3\":0,\"helmet_1\":-1,\"shoes_2\":0,\"beard_2\":0,\"beard_1\":0,\"lipstick_2\":0,\"beard_4\":0,\"glasses_1\":5,\"bproof_1\":0,\"mask_1\":0,\"decals_1\":1,\"hair_1\":0,\"eyebrows_2\":0,\"beard_3\":0,\"age_1\":0,\"tshirt_2\":0,\"skin\":0,\"torso_2\":0,\"eyebrows_1\":0,\"face\":0,\"shoes_1\":49,\"pants_1\":11}'),
+(45, 'cardealer', 0, 'recruit', 'Recruit', 10, '{}', '{}'),
+(46, 'cardealer', 1, 'novice', 'Novice', 25, '{}', '{}'),
+(47, 'cardealer', 2, 'experienced', 'Experienced', 40, '{}', '{}'),
+(48, 'cardealer', 3, 'boss', 'Boss', 0, '{}', '{}');
 
 -- --------------------------------------------------------
 
@@ -584,7 +638,12 @@ CREATE TABLE `owned_vehicles` (
   `category` varchar(50) DEFAULT NULL,
   `name` varchar(60) NOT NULL DEFAULT 'Unknown',
   `fuel` int(11) NOT NULL DEFAULT 100,
-  `stored` tinyint(1) NOT NULL DEFAULT 0
+  `stored` tinyint(1) NOT NULL DEFAULT 0,
+  `date` varchar(255) DEFAULT NULL,
+  `paidprice` int(11) NOT NULL DEFAULT 0,
+  `finance` int(32) NOT NULL DEFAULT 0,
+  `repaytime` int(32) NOT NULL DEFAULT 0,
+  `model` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -891,6 +950,13 @@ CREATE TABLE `users` (
   `phone_number` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`identifier`, `accounts`, `group`, `inventory`, `job`, `job_grade`, `loadout`, `position`, `status`, `skin`, `is_dead`, `last_property`, `firstname`, `lastname`, `dateofbirth`, `sex`, `height`, `phone_number`) VALUES
+('steam:1100001121b6bdb', '{\"money\":0,\"black_money\":0,\"bank\":50600}', 'user', '[]', 'unemployed', 0, '[]', '{\"y\":-1419.1,\"z\":31.0,\"heading\":88.3,\"x\":-232.1}', '[{\"val\":0,\"percent\":0.0,\"name\":\"drunk\"}]', '{\"cheeks_3\":-1,\"helmet_2\":0,\"makeup_1\":255,\"neck_thickness\":0,\"pants_2\":4,\"beard_3\":0,\"chin_4\":0,\"blemishes_1\":255,\"eyebrows_6\":32,\"decals_1\":0,\"torso_2\":0,\"chest_1\":0,\"hair_color_1\":0,\"hair_color_2\":18,\"lipstick_2\":100,\"bodyb_1\":255,\"helmet_1\":-1,\"chest_4\":0,\"lipstick_3\":0,\"blush_3\":0,\"nose_6\":0,\"nose_3\":0,\"lipstick_1\":255,\"beard_2\":60,\"lip_thickness\":0,\"shoes_1\":28,\"complexion_2\":100,\"torso_1\":57,\"glasses_1\":-1,\"makeup_2\":100,\"age_2\":100,\"chin_2\":1,\"sun_2\":100,\"jaw_2\":1,\"face_md_weight\":25,\"eye_squint\":0,\"chest_3\":0,\"cheeks_1\":0,\"blush_2\":100,\"neckarm_1\":0,\"skin_md_weight\":75,\"hair_1\":57,\"hair_2\":0,\"eyebrows_4\":0,\"tshirt_2\":0,\"nose_4\":0,\"complexion_1\":255,\"moles_1\":255,\"blemishes_2\":100,\"moles_2\":100,\"bodyb_4\":100,\"neckarm_2\":0,\"shoes_2\":3,\"dad\":0,\"beard_4\":0,\"makeup_4\":255,\"lefthand_2\":0,\"arms\":4,\"lipstick_4\":0,\"bags_1\":0,\"sex\":0,\"jaw_1\":-50,\"age_1\":255,\"lefthand_1\":-1,\"nose_2\":0,\"eyebrows_2\":100,\"pants_1\":78,\"makeup_3\":255,\"eyebrows_5\":58,\"beard_1\":7,\"righthand_2\":0,\"makeup_type\":0,\"nose_1\":0,\"blush_1\":255,\"mom\":31,\"chin_1\":-21,\"bproof_2\":0,\"chest_2\":50,\"eye_color\":2,\"nose_5\":0,\"bproof_1\":0,\"mask_2\":0,\"eyebrows_3\":0,\"glasses_2\":0,\"righthand_1\":-1,\"tshirt_1\":75,\"decals_2\":0,\"cheeks_2\":0,\"bags_2\":0,\"eyebrows_1\":23,\"bodyb_3\":255,\"chin_3\":-48,\"mask_1\":0,\"arms_2\":0,\"ears_1\":-1,\"ears_2\":0,\"bodyb_2\":100,\"sun_1\":255}', 0, NULL, 'Brad', 'Xu', '01/27/2000', 'm', 75, '845-9133');
+
 -- --------------------------------------------------------
 
 --
@@ -901,6 +967,13 @@ CREATE TABLE `user_lastcharacter` (
   `license` varchar(255) NOT NULL,
   `charid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_lastcharacter`
+--
+
+INSERT INTO `user_lastcharacter` (`license`, `charid`) VALUES
+('steam:1100001121b6bdb', 1);
 
 -- --------------------------------------------------------
 
@@ -913,6 +986,326 @@ CREATE TABLE `user_licenses` (
   `type` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicles`
+--
+
+CREATE TABLE `vehicles` (
+  `name` varchar(60) NOT NULL,
+  `model` varchar(60) NOT NULL,
+  `price` int(11) NOT NULL,
+  `category` varchar(60) DEFAULT NULL,
+  `stock` int(11) NOT NULL DEFAULT 10
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicles`
+--
+
+INSERT INTO `vehicles` (`name`, `model`, `price`, `category`, `stock`) VALUES
+('Adder', 'adder', 900000, 'super', 10),
+('Akuma', 'AKUMA', 7500, 'motorcycles', 10),
+('Alpha', 'alpha', 60000, 'sports', 10),
+('Ardent', 'ardent', 1150000, 'sportsclassics', 10),
+('Asea', 'asea', 5500, 'sedans', 10),
+('Autarch', 'autarch', 1955000, 'super', 10),
+('Avarus', 'avarus', 18000, 'motorcycles', 10),
+('Bagger', 'bagger', 13500, 'motorcycles', 10),
+('Baller', 'baller2', 40000, 'suvs', 10),
+('Baller Sport', 'baller3', 60000, 'suvs', 10),
+('Banshee', 'banshee', 70000, 'sports', 10),
+('Banshee 900R', 'banshee2', 255000, 'super', 10),
+('Bati 801', 'bati', 12000, 'motorcycles', 10),
+('Bati 801RR', 'bati2', 19000, 'motorcycles', 10),
+('Bestia GTS', 'bestiagts', 55000, 'sports', 10),
+('BF400', 'bf400', 6500, 'motorcycles', 10),
+('Bf Injection', 'bfinjection', 16000, 'offroad', 10),
+('Bifta', 'bifta', 12000, 'offroad', 10),
+('Bison', 'bison', 45000, 'vans', 10),
+('Blade', 'blade', 15000, 'muscle', 10),
+('Blazer', 'blazer', 6500, 'offroad', 10),
+('Blazer Sport', 'blazer4', 8500, 'offroad', 10),
+('blazer5', 'blazer5', 1755600, 'offroad', 10),
+('Blista', 'blista', 8000, 'compacts', 10),
+('BMX (velo)', 'bmx', 160, 'bicycles', 10),
+('Bobcat XL', 'bobcatxl', 32000, 'vans', 10),
+('Brawler', 'brawler', 45000, 'offroad', 10),
+('Brioso R/A', 'brioso', 18000, 'compacts', 10),
+('Btype', 'btype', 62000, 'sportsclassics', 10),
+('Btype Hotroad', 'btype2', 155000, 'sportsclassics', 10),
+('Btype Luxe', 'btype3', 85000, 'sportsclassics', 10),
+('Buccaneer', 'buccaneer', 18000, 'muscle', 10),
+('Buccaneer Rider', 'buccaneer2', 24000, 'muscle', 10),
+('Buffalo', 'buffalo', 12000, 'sports', 10),
+('Buffalo S', 'buffalo2', 20000, 'sports', 10),
+('Bullet', 'bullet', 90000, 'super', 10),
+('Burrito', 'burrito3', 19000, 'vans', 10),
+('Camper', 'camper', 42000, 'vans', 10),
+('Carbonizzare', 'carbonizzare', 75000, 'sports', 10),
+('Carbon RS', 'carbonrs', 18000, 'motorcycles', 10),
+('Casco', 'casco', 30000, 'sportsclassics', 10),
+('Cavalcade', 'cavalcade2', 55000, 'suvs', 10),
+('Cheetah', 'cheetah', 375000, 'super', 10),
+('Chimera', 'chimera', 38000, 'motorcycles', 10),
+('Chino', 'chino', 15000, 'muscle', 10),
+('Chino Luxe', 'chino2', 19000, 'muscle', 10),
+('Cliffhanger', 'cliffhanger', 9500, 'motorcycles', 10),
+('Cognoscenti Cabrio', 'cogcabrio', 55000, 'coupes', 10),
+('Cognoscenti', 'cognoscenti', 55000, 'sedans', 10),
+('Comet', 'comet2', 65000, 'sports', 10),
+('Comet 5', 'comet5', 1145000, 'sports', 10),
+('Contender', 'contender', 70000, 'suvs', 10),
+('Coquette', 'coquette', 65000, 'sports', 10),
+('Coquette Classic', 'coquette2', 40000, 'sportsclassics', 10),
+('Coquette BlackFin', 'coquette3', 55000, 'muscle', 10),
+('Cruiser (velo)', 'cruiser', 510, 'bicycles', 10),
+('Cyclone', 'cyclone', 1890000, 'super', 10),
+('Daemon', 'daemon', 11500, 'motorcycles', 10),
+('Daemon High', 'daemon2', 13500, 'motorcycles', 10),
+('Defiler', 'defiler', 9800, 'motorcycles', 10),
+('Deluxo', 'deluxo', 4721500, 'sportsclassics', 10),
+('Dominator', 'dominator', 35000, 'muscle', 10),
+('Double T', 'double', 28000, 'motorcycles', 10),
+('Dubsta', 'dubsta', 45000, 'suvs', 10),
+('Dubsta Luxuary', 'dubsta2', 60000, 'suvs', 10),
+('Bubsta 6x6', 'dubsta3', 120000, 'offroad', 10),
+('Dukes', 'dukes', 28000, 'muscle', 10),
+('Dune Buggy', 'dune', 8000, 'offroad', 10),
+('Elegy', 'elegy2', 38500, 'sports', 10),
+('Emperor', 'emperor', 8500, 'sedans', 10),
+('Enduro', 'enduro', 5500, 'motorcycles', 10),
+('Entity XF', 'entityxf', 425000, 'super', 10),
+('Esskey', 'esskey', 4200, 'motorcycles', 10),
+('Exemplar', 'exemplar', 32000, 'coupes', 10),
+('F620', 'f620', 40000, 'coupes', 10),
+('Faction', 'faction', 20000, 'muscle', 10),
+('Faction Rider', 'faction2', 30000, 'muscle', 10),
+('Faction XL', 'faction3', 40000, 'muscle', 10),
+('Faggio', 'faggio', 1900, 'motorcycles', 10),
+('Vespa', 'faggio2', 2800, 'motorcycles', 10),
+('Felon', 'felon', 42000, 'coupes', 10),
+('Felon GT', 'felon2', 55000, 'coupes', 10),
+('Feltzer', 'feltzer2', 55000, 'sports', 10),
+('Stirling GT', 'feltzer3', 65000, 'sportsclassics', 10),
+('Fixter (velo)', 'fixter', 225, 'bicycles', 10),
+('Tow Truck', 'flatbed', 625000, 'utility', 10),
+('FMJ', 'fmj', 185000, 'super', 10),
+('Fhantom', 'fq2', 17000, 'suvs', 10),
+('Fugitive', 'fugitive', 12000, 'sedans', 10),
+('Furore GT', 'furoregt', 45000, 'sports', 10),
+('Fusilade', 'fusilade', 40000, 'sports', 10),
+('Gargoyle', 'gargoyle', 16500, 'motorcycles', 10),
+('Gauntlet', 'gauntlet', 30000, 'muscle', 10),
+('Gang Burrito', 'gburrito', 45000, 'vans', 10),
+('Burrito', 'gburrito2', 29000, 'vans', 10),
+('Glendale', 'glendale', 6500, 'sedans', 10),
+('Grabger', 'granger', 50000, 'suvs', 10),
+('Gresley', 'gresley', 47500, 'suvs', 10),
+('GT 500', 'gt500', 785000, 'sportsclassics', 10),
+('Guardian', 'guardian', 45000, 'offroad', 10),
+('Hakuchou', 'hakuchou', 31000, 'motorcycles', 10),
+('Hakuchou Sport', 'hakuchou2', 55000, 'motorcycles', 10),
+('Hermes', 'hermes', 535000, 'muscle', 10),
+('Hexer', 'hexer', 12000, 'motorcycles', 10),
+('Hotknife', 'hotknife', 125000, 'muscle', 10),
+('Huntley S', 'huntley', 40000, 'suvs', 10),
+('Hustler', 'hustler', 625000, 'muscle', 10),
+('Infernus', 'infernus', 180000, 'super', 10),
+('Innovation', 'innovation', 23500, 'motorcycles', 10),
+('Intruder', 'intruder', 7500, 'sedans', 10),
+('Issi', 'issi2', 10000, 'compacts', 10),
+('Jackal', 'jackal', 38000, 'coupes', 10),
+('Jester', 'jester', 65000, 'sports', 10),
+('Jester(Racecar)', 'jester2', 135000, 'sports', 10),
+('Journey', 'journey', 6500, 'vans', 10),
+('Kamacho', 'kamacho', 345000, 'offroad', 10),
+('Khamelion', 'khamelion', 38000, 'sports', 10),
+('Kuruma', 'kuruma', 30000, 'sports', 10),
+('Landstalker', 'landstalker', 35000, 'suvs', 10),
+('RE-7B', 'le7b', 325000, 'super', 10),
+('Lynx', 'lynx', 40000, 'sports', 10),
+('Mamba', 'mamba', 70000, 'sports', 10),
+('Manana', 'manana', 12800, 'sportsclassics', 10),
+('Manchez', 'manchez', 5300, 'motorcycles', 10),
+('Massacro', 'massacro', 65000, 'sports', 10),
+('Massacro(Racecar)', 'massacro2', 130000, 'sports', 10),
+('Mesa', 'mesa', 16000, 'suvs', 10),
+('Mesa Trail', 'mesa3', 40000, 'suvs', 10),
+('Minivan', 'minivan', 13000, 'vans', 10),
+('Monroe', 'monroe', 55000, 'sportsclassics', 10),
+('The Liberator', 'monster', 210000, 'offroad', 10),
+('Moonbeam', 'moonbeam', 18000, 'vans', 10),
+('Moonbeam Rider', 'moonbeam2', 35000, 'vans', 10),
+('Nemesis', 'nemesis', 5800, 'motorcycles', 10),
+('Neon', 'neon', 1500000, 'sports', 10),
+('Nightblade', 'nightblade', 35000, 'motorcycles', 10),
+('Nightshade', 'nightshade', 65000, 'muscle', 10),
+('9F', 'ninef', 65000, 'sports', 10),
+('9F Cabrio', 'ninef2', 80000, 'sports', 10),
+('Omnis', 'omnis', 35000, 'sports', 10),
+('Oppressor', 'oppressor', 3524500, 'super', 10),
+('Oracle XS', 'oracle2', 35000, 'coupes', 10),
+('Osiris', 'osiris', 160000, 'super', 10),
+('Panto', 'panto', 10000, 'compacts', 10),
+('Paradise', 'paradise', 19000, 'vans', 10),
+('Pariah', 'pariah', 1420000, 'sports', 10),
+('Patriot', 'patriot', 55000, 'suvs', 10),
+('PCJ-600', 'pcj', 6200, 'motorcycles', 10),
+('Penumbra', 'penumbra', 28000, 'sports', 10),
+('Pfister', 'pfister811', 85000, 'super', 10),
+('Phoenix', 'phoenix', 12500, 'muscle', 10),
+('Picador', 'picador', 18000, 'muscle', 10),
+('Pigalle', 'pigalle', 20000, 'sportsclassics', 10),
+('Prairie', 'prairie', 12000, 'compacts', 10),
+('Premier', 'premier', 8000, 'sedans', 10),
+('Primo Custom', 'primo2', 14000, 'sedans', 10),
+('X80 Proto', 'prototipo', 2500000, 'super', 10),
+('Radius', 'radi', 29000, 'suvs', 10),
+('raiden', 'raiden', 1375000, 'sports', 10),
+('Rapid GT', 'rapidgt', 35000, 'sports', 10),
+('Rapid GT Convertible', 'rapidgt2', 45000, 'sports', 10),
+('Rapid GT3', 'rapidgt3', 885000, 'sportsclassics', 10),
+('Reaper', 'reaper', 150000, 'super', 10),
+('Rebel', 'rebel2', 35000, 'offroad', 10),
+('Regina', 'regina', 5000, 'sedans', 10),
+('Retinue', 'retinue', 615000, 'sportsclassics', 10),
+('Revolter', 'revolter', 1610000, 'sports', 10),
+('riata', 'riata', 380000, 'offroad', 10),
+('Rocoto', 'rocoto', 45000, 'suvs', 10),
+('Ruffian', 'ruffian', 6800, 'motorcycles', 10),
+('Ruiner 2', 'ruiner2', 5745600, 'muscle', 10),
+('Rumpo', 'rumpo', 15000, 'vans', 10),
+('Rumpo Trail', 'rumpo3', 19500, 'vans', 10),
+('Sabre Turbo', 'sabregt', 20000, 'muscle', 10),
+('Sabre GT', 'sabregt2', 25000, 'muscle', 10),
+('Sanchez', 'sanchez', 5300, 'motorcycles', 10),
+('Sanchez Sport', 'sanchez2', 5300, 'motorcycles', 10),
+('Sanctus', 'sanctus', 25000, 'motorcycles', 10),
+('Sandking', 'sandking', 55000, 'offroad', 10),
+('Savestra', 'savestra', 990000, 'sportsclassics', 10),
+('SC 1', 'sc1', 1603000, 'super', 10),
+('Schafter', 'schafter2', 25000, 'sedans', 10),
+('Schafter V12', 'schafter3', 50000, 'sports', 10),
+('Scorcher (velo)', 'scorcher', 280, 'bicycles', 10),
+('Seminole', 'seminole', 25000, 'suvs', 10),
+('Sentinel', 'sentinel', 32000, 'coupes', 10),
+('Sentinel XS', 'sentinel2', 40000, 'coupes', 10),
+('Sentinel3', 'sentinel3', 650000, 'sports', 10),
+('Seven 70', 'seven70', 39500, 'sports', 10),
+('ETR1', 'sheava', 220000, 'super', 10),
+('Shotaro Concept', 'shotaro', 320000, 'motorcycles', 10),
+('Slam Van', 'slamvan3', 11500, 'muscle', 10),
+('Sovereign', 'sovereign', 22000, 'motorcycles', 10),
+('Stinger', 'stinger', 80000, 'sportsclassics', 10),
+('Stinger GT', 'stingergt', 75000, 'sportsclassics', 10),
+('Streiter', 'streiter', 500000, 'sports', 10),
+('Stretch', 'stretch', 90000, 'sedans', 10),
+('Stromberg', 'stromberg', 3185350, 'sports', 10),
+('Sultan', 'sultan', 15000, 'sports', 10),
+('Sultan RS', 'sultanrs', 65000, 'super', 10),
+('Super Diamond', 'superd', 130000, 'sedans', 10),
+('Surano', 'surano', 50000, 'sports', 10),
+('Surfer', 'surfer', 12000, 'vans', 10),
+('T20', 't20', 300000, 'super', 10),
+('Tailgater', 'tailgater', 30000, 'sedans', 10),
+('Tampa', 'tampa', 16000, 'muscle', 10),
+('Drift Tampa', 'tampa2', 80000, 'sports', 10),
+('Thrust', 'thrust', 24000, 'motorcycles', 10),
+('Tri bike (velo)', 'tribike3', 520, 'bicycles', 10),
+('Trophy Truck', 'trophytruck', 60000, 'offroad', 10),
+('Trophy Truck Limited', 'trophytruck2', 80000, 'offroad', 10),
+('Tropos', 'tropos', 40000, 'sports', 10),
+('Turismo R', 'turismor', 350000, 'super', 10),
+('Tyrus', 'tyrus', 600000, 'super', 10),
+('Vacca', 'vacca', 120000, 'super', 10),
+('Vader', 'vader', 7200, 'motorcycles', 10),
+('Verlierer', 'verlierer2', 70000, 'sports', 10),
+('Vigero', 'vigero', 12500, 'muscle', 10),
+('Virgo', 'virgo', 14000, 'muscle', 10),
+('Viseris', 'viseris', 875000, 'sportsclassics', 10),
+('Visione', 'visione', 2250000, 'super', 10),
+('Voltic', 'voltic', 90000, 'super', 10),
+('Voltic 2', 'voltic2', 3830400, 'super', 10),
+('Voodoo', 'voodoo', 7200, 'muscle', 10),
+('Vortex', 'vortex', 9800, 'motorcycles', 10),
+('Warrener', 'warrener', 4000, 'sedans', 10),
+('Washington', 'washington', 9000, 'sedans', 10),
+('Windsor', 'windsor', 95000, 'coupes', 10),
+('Windsor Drop', 'windsor2', 125000, 'coupes', 10),
+('Woflsbane', 'wolfsbane', 9000, 'motorcycles', 10),
+('XLS', 'xls', 32000, 'suvs', 10),
+('Yosemite', 'yosemite', 485000, 'muscle', 10),
+('Youga', 'youga', 10800, 'vans', 10),
+('Youga Luxuary', 'youga2', 14500, 'vans', 10),
+('Z190', 'z190', 900000, 'sportsclassics', 10),
+('Zentorno', 'zentorno', 1500000, 'super', 10),
+('Zion', 'zion', 36000, 'coupes', 10),
+('Zion Cabrio', 'zion2', 45000, 'coupes', 10),
+('Zombie', 'zombiea', 9500, 'motorcycles', 10),
+('Zombie Luxuary', 'zombieb', 12000, 'motorcycles', 10),
+('Z-Type', 'ztype', 220000, 'sportsclassics', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_categories`
+--
+
+CREATE TABLE `vehicle_categories` (
+  `name` varchar(60) NOT NULL,
+  `label` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicle_categories`
+--
+
+INSERT INTO `vehicle_categories` (`name`, `label`) VALUES
+('bicycles', 'Bikes'),
+('compacts', 'Compacts'),
+('coupes', 'Coupes'),
+('motorcycles', 'Motorcycles'),
+('muscle', 'Muscle'),
+('offroad', 'Off Road'),
+('sedans', 'Sedans'),
+('sports', 'Sports'),
+('sportsclassics', 'Sports Classics'),
+('super', 'Super'),
+('suvs', 'SUVs'),
+('utility', 'Utility'),
+('vans', 'Vans');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_display`
+--
+
+CREATE TABLE `vehicle_display` (
+  `id` int(11) NOT NULL,
+  `model` varchar(60) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `commission` int(11) NOT NULL DEFAULT 10,
+  `downpayment` int(11) NOT NULL DEFAULT 25
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicle_display`
+--
+
+INSERT INTO `vehicle_display` (`id`, `model`, `name`, `commission`, `downpayment`) VALUES
+(1, 'panto', 'Panto', 10, 25),
+(2, 'carbonrs', 'Carbon RS', 10, 25),
+(3, 'ardent', 'Ardent', 10, 25),
+(4, 'zentorno', 'Zentorno', 10, 25),
+(5, 'exemplar', 'Exemplar', 10, 25),
+(6, 'emperor', 'Emperor', 10, 25),
+(7, 'baller2', 'Baller', 10, 25),
+(8, 'fixter', 'Fixter (velo)', 10, 25),
+(9, 'trophytruck', 'Trophy Truck', 10, 25);
 
 -- --------------------------------------------------------
 
@@ -1957,6 +2350,24 @@ ALTER TABLE `user_licenses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`model`);
+
+--
+-- Indexes for table `vehicle_categories`
+--
+ALTER TABLE `vehicle_categories`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `vehicle_display`
+--
+ALTER TABLE `vehicle_display`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vehicle_parking`
 --
 ALTER TABLE `vehicle_parking`
@@ -2096,7 +2507,7 @@ ALTER TABLE `weashops`
 -- AUTO_INCREMENT for table `addon_account_data`
 --
 ALTER TABLE `addon_account_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `addon_inventory_items`
@@ -2120,7 +2531,7 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT for table `datastore_data`
 --
 ALTER TABLE `datastore_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `fine_types`
@@ -2144,7 +2555,7 @@ ALTER TABLE `inventory_trunk`
 -- AUTO_INCREMENT for table `job_grades`
 --
 ALTER TABLE `job_grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `owned_properties`
@@ -2223,6 +2634,12 @@ ALTER TABLE `twitter_tweets`
 --
 ALTER TABLE `user_licenses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `vehicle_display`
+--
+ALTER TABLE `vehicle_display`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `vs_ambulance`

@@ -1,6 +1,2 @@
-*.bat
-server/
-server-data/cache/
-server-data/imgui.ini
-server-data/permissions.cfg
-server-data/db/
+server-data/cache
+server-data/db
