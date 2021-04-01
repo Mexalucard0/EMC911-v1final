@@ -13,7 +13,7 @@ EVENTS YOU CAN USE FREELY:
 Config = {}
 
 --SERVERSIDE STUFF--
-Config.LicenseKey = "Cracked by Brad Xu" -- Add your license key here. This can be obtained ONLY by opening a ticket.
+Config.LicenseKey = "1Tpwx8iJmYuRSDVdpQ5NGfZgLYpFZjaW" -- Add your license key here. This can be obtained ONLY by opening a ticket.
 Config.PrintAuthorisationStatus = true -- This is just in case you want to remove the authorisation printing on the serverside console.
 Config.CheckVersion =  true -- Enable/Disable version checker. Prints on serverside console.
 --SERVERSIDE STUFF--
