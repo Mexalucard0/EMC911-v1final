@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 03:57 AM
+-- Generation Time: Apr 01, 2021 at 09:14 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -38,13 +38,20 @@ CREATE TABLE `addon_account` (
 --
 
 INSERT INTO `addon_account` (`name`, `label`, `shared`) VALUES
+('bag_black_money', 'Bag Black Money ', 0),
+('bag_money', 'Bag Money ', 0),
 ('bank_savings', 'Bank Savings', 0),
 ('caution', 'caution', 0),
+('locker', 'Locker', 0),
+('locker_black', 'Locker Zwart geld', 0),
+('locker_cash', 'Locker Contant geld', 0),
 ('property_black_money', 'Money Sale Property', 0),
 ('society_ambulance', 'Ambulance', 1),
 ('society_banker', 'Bank', 1),
 ('society_mechanic', 'Mechanic', 1),
 ('society_police', 'Police', 1),
+('society_police_black_money', 'Police black money ', 1),
+('society_police_money', 'Police money ', 1),
 ('society_realestateagent', 'Real Estate Company', 1),
 ('society_taxi', 'Taxi', 1);
 
@@ -58,7 +65,7 @@ CREATE TABLE `addon_account_data` (
   `id` int(11) NOT NULL,
   `account_name` varchar(255) DEFAULT NULL,
   `money` int(11) NOT NULL,
-  `owner` varchar(255) DEFAULT NULL
+  `owner` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -78,6 +85,8 @@ CREATE TABLE `addon_inventory` (
 --
 
 INSERT INTO `addon_inventory` (`name`, `label`, `shared`) VALUES
+('bag', 'Bag Inventory', 0),
+('locker', 'Locker', 0),
 ('property', 'Property', 0),
 ('society_ambulance', 'Ambulance', 1),
 ('society_mechanic', 'Mechanic', 1),
@@ -95,7 +104,23 @@ CREATE TABLE `addon_inventory_items` (
   `inventory_name` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `count` int(11) NOT NULL,
-  `owner` varchar(255) DEFAULT NULL
+  `owner` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ammunition`
+--
+
+CREATE TABLE `ammunition` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `owner` text DEFAULT NULL,
+  `original_owner` text NOT NULL,
+  `hash` text NOT NULL,
+  `weapon_id` char(60) NOT NULL,
+  `count` int(11) NOT NULL DEFAULT 0,
+  `attach` text NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -131,6 +156,8 @@ CREATE TABLE `datastore` (
 --
 
 INSERT INTO `datastore` (`name`, `label`, `shared`) VALUES
+('bag', 'Bag Datastore', 0),
+('locker', 'Locker', 0),
 ('property', 'Property', 0),
 ('society_ambulance', 'Ambulance', 1),
 ('society_mechanic', 'Mechanic', 1),
@@ -153,6 +180,28 @@ CREATE TABLE `datastore_data` (
   `owner` varchar(255) DEFAULT NULL,
   `data` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dpkeybinds`
+--
+
+CREATE TABLE `dpkeybinds` (
+  `id` varchar(50) NOT NULL,
+  `keybind1` varchar(50) DEFAULT 'num4',
+  `emote1` varchar(255) DEFAULT '',
+  `keybind2` varchar(50) DEFAULT 'num5',
+  `emote2` varchar(255) DEFAULT '',
+  `keybind3` varchar(50) DEFAULT 'num6',
+  `emote3` varchar(255) DEFAULT '',
+  `keybind4` varchar(50) DEFAULT 'num7',
+  `emote4` varchar(255) DEFAULT '',
+  `keybind5` varchar(50) DEFAULT 'num8',
+  `emote5` varchar(255) DEFAULT '',
+  `keybind6` varchar(50) DEFAULT 'num9',
+  `emote6` varchar(255) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -228,6 +277,55 @@ INSERT INTO `fine_types` (`id`, `label`, `amount`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventory_glovebox`
+--
+
+CREATE TABLE `inventory_glovebox` (
+  `id` int(11) NOT NULL,
+  `plate` varchar(8) NOT NULL,
+  `data` text NOT NULL,
+  `owned` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_hotbar`
+--
+
+CREATE TABLE `inventory_hotbar` (
+  `owner` varchar(80) NOT NULL,
+  `item` varchar(80) NOT NULL,
+  `slot` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_lockers`
+--
+
+CREATE TABLE `inventory_lockers` (
+  `owner` varchar(50) NOT NULL,
+  `lockerName` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory_trunk`
+--
+
+CREATE TABLE `inventory_trunk` (
+  `id` int(11) NOT NULL,
+  `plate` varchar(8) NOT NULL,
+  `data` text NOT NULL,
+  `owned` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items`
 --
 
@@ -244,7 +342,20 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
+('accesscard', 'Access Card', 10, 0, 1),
 ('alive_chicken', 'Living chicken', 1, 0, 1),
+('ammunition_fireextinguisher', 'Fire Extinguisher Fuel', 10, 0, 1),
+('ammunition_pistol', 'Pistol Ammo', 10, 0, 1),
+('ammunition_pistol_large', 'Pistol Ammo Large', 10, 0, 1),
+('ammunition_rifle', 'Rifle Ammo', 10, 0, 1),
+('ammunition_rifle_large', 'Rifle Ammo Large', 10, 0, 1),
+('ammunition_shotgun', 'Shotgun Shells', 10, 0, 1),
+('ammunition_shotgun_large', 'Shotgun Shells Large', 10, 0, 1),
+('ammunition_smg', 'SMG Ammo', 10, 0, 1),
+('ammunition_smg_large', 'SMG Ammo Large', 10, 0, 1),
+('ammunition_snp', 'Sniper Ammo', 10, 0, 1),
+('ammunition_snp_large', 'Sniper Ammo Large', 10, 0, 1),
+('bag', 'Bag', 1, 0, 1),
 ('bandage', 'Bandage', 2, 0, 1),
 ('beer', 'Beer', 1, 0, 1),
 ('blowpipe', 'Blowtorch', 2, 0, 1),
@@ -252,28 +363,79 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('cannabis', 'Cannabis', 3, 0, 1),
 ('carokit', 'Body Kit', 3, 0, 1),
 ('carotool', 'Tools', 2, 0, 1),
+('carparts', 'Car Parts', -1, 0, 1),
 ('clothe', 'Cloth', 1, 0, 1),
+('coke', 'Coca leaf', 1, 0, 1),
+('coke_pooch', 'Coke', 1, 0, 1),
 ('copper', 'Copper', 1, 0, 1),
 ('cutted_wood', 'Cut wood', 1, 0, 1),
 ('diamond', 'Diamond', 1, 0, 1),
+('drill', 'Drill', 15, 0, 1),
+('drummag', 'Drum Magazine', 2, 0, 1),
 ('essence', 'Gas', 1, 0, 1),
 ('fabric', 'Fabric', 1, 0, 1),
 ('fish', 'Fish', 1, 0, 1),
 ('fixkit', 'Repair Kit', 3, 0, 1),
 ('fixtool', 'Repair Tools', 2, 0, 1),
+('flashlight', 'Flashlight', 2, 0, 1),
 ('gazbottle', 'Gas Bottle', 2, 0, 1),
 ('gold', 'Gold', 1, 0, 1),
+('goldbar', 'Gold Bar', 100, 0, 1),
+('goldnecklace', 'Gold Necklace', 150, 0, 1),
+('goldwatch', 'Gold Watch', 200, 0, 1),
+('grip', 'Grip', 2, 0, 1),
+('hackerDevice', 'Hacker Device', 10, 0, 1),
+('hammerwirecutter', 'Hammer And Wire Cutter', 10, 0, 1),
 ('iron', 'Iron', 1, 0, 1),
+('joint', 'Joint', 1, 0, 1),
+('lockpick', 'Lockpick', 10, 0, 1),
+('mag', 'Magazine', 2, 0, 1),
 ('marijuana', 'Marijuana', 2, 0, 1),
 ('medikit', 'Medikit', 2, 0, 1),
+('meth', 'Chemicals', 1, 0, 1),
+('meth_pooch', 'Meth', 1, 0, 1),
+('opium', 'Opiate', 1, 0, 1),
+('opium_pooch', 'Opium', 1, 0, 1),
 ('packaged_chicken', 'Chicken fillet', 1, 0, 1),
 ('packaged_plank', 'Packaged wood', 1, 0, 1),
 ('petrol', 'Oil', 1, 0, 1),
 ('petrol_raffin', 'Processed oil', 1, 0, 1),
+('plato', 'Meal trays', -1, 0, 1),
+('pouch', 'Pouch', 1, 0, 1),
+('raw', 'RAW Rolling Papers', 1, 0, 1),
+('scope', 'Scope', 2, 0, 1),
+('skin', 'Stock weapon spray', 2, 0, 1),
+('skin1', 'Dark green weapon spray', 2, 0, 1),
+('skin2', 'Gold weapon spray', 2, 0, 1),
+('skin3', 'Pink and white weapon spray', 2, 0, 1),
+('skin4', 'Beige weapon spray', 2, 0, 1),
+('skin5', 'Dark blue weapon spray', 2, 0, 1),
+('skin6', 'Orange and black weapon spray', 2, 0, 1),
+('skin7', 'Light grey weapon spray', 2, 0, 1),
 ('slaughtered_chicken', 'Slaughtered chicken', 1, 0, 1),
 ('stone', 'Stone', 1, 0, 1),
+('suppressor', 'Suppressor', 2, 0, 1),
+('ticket', 'Jail Tickets', -1, 0, 1),
+('trapphone', 'Trap Phone', 1, 0, 1),
 ('washed_stone', 'Washed stone', 1, 0, 1),
 ('water', 'Water', 1, 0, 1),
+('WEAPON_ADVANCEDRIFLE', 'Advanced Rifle', 1, 0, 1),
+('WEAPON_APPISTOL', 'AP Pistol', 1, 0, 1),
+('WEAPON_ASSAULTRIFLE', 'Assault Rifle', 1, 0, 1),
+('WEAPON_ASSAULTSHOTGUN', 'Assault Shotgun', 1, 0, 1),
+('WEAPON_ASSAULTSMG', 'Assault SMG', 1, 0, 1),
+('WEAPON_AUTOSHOTGUN', 'Auto Shotgun', 1, 0, 1),
+('WEAPON_BAT', 'Baseball Bat', 1, 0, 1),
+('WEAPON_CARBINERIFLE', 'Carbine Rifle', 1, 0, 1),
+('WEAPON_COMBATPISTOL', 'Combat Pistol', 1, 0, 1),
+('WEAPON_FLASHLIGHT', 'Flashlight', 1, 0, 1),
+('WEAPON_KNIFE', 'Knife', 100, 0, 1),
+('WEAPON_PISTOL', 'Pistol', 1, 0, 1),
+('WEAPON_PUMPSHOTGUN', 'Pump Shotgun', 1, 0, 1),
+('WEAPON_SMG', 'SMG', 1, 0, 1),
+('WEAPON_STUNGUN', 'Taser', 100, 0, 1),
+('weed', 'Weed', 1, 0, 1),
+('weed_in_pooch', 'Weed in pouch', 1, 0, 1),
 ('wood', 'Wood', 1, 0, 1),
 ('wool', 'Wool', 1, 0, 1);
 
@@ -751,6 +913,24 @@ CREATE TABLE `user_licenses` (
   `type` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_parking`
+--
+
+CREATE TABLE `vehicle_parking` (
+  `plate` varchar(8) NOT NULL,
+  `modifications` text NOT NULL,
+  `posX` float NOT NULL,
+  `posY` float NOT NULL,
+  `posZ` float NOT NULL,
+  `rotX` float NOT NULL,
+  `rotY` float NOT NULL,
+  `rotZ` float NOT NULL,
+  `lastUpdate` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1587,6 +1767,13 @@ ALTER TABLE `addon_inventory_items`
   ADD KEY `index_addon_inventory_inventory_name` (`inventory_name`);
 
 --
+-- Indexes for table `ammunition`
+--
+ALTER TABLE `ammunition`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `weapon_id` (`weapon_id`);
+
+--
 -- Indexes for table `billing`
 --
 ALTER TABLE `billing`
@@ -1607,10 +1794,36 @@ ALTER TABLE `datastore_data`
   ADD KEY `index_datastore_data_name` (`name`);
 
 --
+-- Indexes for table `dpkeybinds`
+--
+ALTER TABLE `dpkeybinds`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `fine_types`
 --
 ALTER TABLE `fine_types`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `inventory_glovebox`
+--
+ALTER TABLE `inventory_glovebox`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `plate` (`plate`);
+
+--
+-- Indexes for table `inventory_hotbar`
+--
+ALTER TABLE `inventory_hotbar`
+  ADD PRIMARY KEY (`owner`);
+
+--
+-- Indexes for table `inventory_trunk`
+--
+ALTER TABLE `inventory_trunk`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `plate` (`plate`);
 
 --
 -- Indexes for table `items`
@@ -1742,6 +1955,12 @@ ALTER TABLE `user_lastcharacter`
 --
 ALTER TABLE `user_licenses`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `vehicle_parking`
+--
+ALTER TABLE `vehicle_parking`
+  ADD PRIMARY KEY (`plate`);
 
 --
 -- Indexes for table `vs_aircrafts`
@@ -1877,13 +2096,19 @@ ALTER TABLE `weashops`
 -- AUTO_INCREMENT for table `addon_account_data`
 --
 ALTER TABLE `addon_account_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `addon_inventory_items`
 --
 ALTER TABLE `addon_inventory_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `ammunition`
+--
+ALTER TABLE `ammunition`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `billing`
@@ -1895,13 +2120,25 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT for table `datastore_data`
 --
 ALTER TABLE `datastore_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `fine_types`
 --
 ALTER TABLE `fine_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `inventory_glovebox`
+--
+ALTER TABLE `inventory_glovebox`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `inventory_trunk`
+--
+ALTER TABLE `inventory_trunk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `job_grades`
@@ -1985,7 +2222,7 @@ ALTER TABLE `twitter_tweets`
 -- AUTO_INCREMENT for table `user_licenses`
 --
 ALTER TABLE `user_licenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vs_ambulance`
