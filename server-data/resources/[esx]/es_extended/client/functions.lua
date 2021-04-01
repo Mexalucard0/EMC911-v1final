@@ -958,7 +958,7 @@ ESX.ShowInventory = function()
 				TriggerServerEvent('esx:useItem', item)
 			elseif data1.current.action == 'return' then
 				ESX.UI.Menu.CloseAll()
-				ESX.ShowInventory()
+				--ESX.ShowInventory()
 			elseif data1.current.action == 'give_ammo' then
 				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				local closestPed = GetPlayerPed(closestPlayer)
@@ -998,7 +998,7 @@ ESX.ShowInventory = function()
 			end
 		end, function(data1, menu1)
 			ESX.UI.Menu.CloseAll()
-			ESX.ShowInventory()
+			--ESX.ShowInventory()
 		end)
 	end, function(data, menu)
 		menu.close()
