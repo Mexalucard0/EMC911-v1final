@@ -461,6 +461,11 @@ Config.Shops = {
 			{ x = 22.09, y = -1107.28, z = 28.80 }
 		},
 		Items = {
+			{name = 'WEAPON_FLASHLIGHT', price = 100},
+			{name = 'WEAPON_STUNGUN', price = 100},
+			{name = 'WEAPON_NIGHTSTICK', price = 100},
+			{name = 'WEAPON_PISTOL', price = 100},
+			{name = 'WEAPON_FIREEXTINGUISHER',price = 100},
 			{name = 'ammunition_pistol', price = 1},
 			{name = 'ammunition_pistol_large', price = 1},
 			{name = 'ammunition_shotgun', price = 1},

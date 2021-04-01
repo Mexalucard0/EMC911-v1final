@@ -2,3 +2,5 @@
 server/
 server-data/cache/
 server-data/imgui.ini
+server-data/permissions.cfg
+cerver-data/db/

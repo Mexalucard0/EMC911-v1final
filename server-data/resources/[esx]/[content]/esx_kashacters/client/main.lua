@@ -115,6 +115,7 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn, isnew)
 
         end)
     end
+    --TriggerEvent('emc:loadCharacters') --HUD
 end)
 
 RegisterNetEvent('kashactersC:ReloadCharacters')

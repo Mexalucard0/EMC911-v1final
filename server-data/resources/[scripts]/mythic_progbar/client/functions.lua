@@ -106,6 +106,7 @@ end
 function ActionStart()
     runProgThread = true
     Citizen.CreateThread(function()
+        TriggerEvent("DP_Inventory:closeinventory")
         while runProgThread do
             if isDoingAction then
                 if not isAnim then
@@ -228,13 +229,16 @@ function ActionCleanup()
             ClearPedTasks(ped)
         end
     end
-
-    DetachEntity(NetToObj(prop_net), 1, 1)
-    DeleteEntity(NetToObj(prop_net))
-    DetachEntity(NetToObj(propTwo_net), 1, 1)
-    DeleteEntity(NetToObj(propTwo_net))
-    prop_net = nil
-    propTwo_net = nil
+    if prop_net and NetToObj(prop_net) ~= 0 and NetToObj(prop_net) ~= nil then
+        DetachEntity(NetToObj(prop_net), 1, 1)
+        DeleteEntity(NetToObj(prop_net))
+        prop_net = nil
+    end
+    if propTwo_net and NetToObj(propTwo_net) ~= 0 and NetToObj(propTwo_net) ~= nil then
+        DetachEntity(NetToObj(propTwo_net), 1, 1)
+        DeleteEntity(NetToObj(propTwo_net))
+        propTwo_net = nil
+    end
     runProgThread = false
 end
 
