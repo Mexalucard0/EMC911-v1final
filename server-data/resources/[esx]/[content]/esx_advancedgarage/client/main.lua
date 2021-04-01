@@ -304,14 +304,14 @@ function OpenAmbulanceImpoundMenu()
 end
 
 function StoreOwnedAmbulanceMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -577,14 +577,14 @@ function OpenPoliceImpoundMenu()
 end
 
 function StoreOwnedPoliceMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -737,14 +737,14 @@ function OpenMechanicImpoundMenu()
 end
 
 function StoreOwnedMechanicMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -949,14 +949,14 @@ function OpenAircraftImpoundMenu()
 end
 
 function StoreOwnedAircraftMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -1161,14 +1161,14 @@ function OpenBoatImpoundMenu()
 end
 
 function StoreOwnedBoatMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -2136,14 +2136,14 @@ function OpenCarImpoundMenu()
 end
 
 function StoreOwnedCarMenu()
-	local playerPed  = GetPlayerPed(-1)
+	local playerPed  = PlayerPedId()
 
 	if IsPedInAnyVehicle(playerPed,  false) then
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local coords = GetEntityCoords(playerPed)
 		local vehicle = GetVehiclePedIsIn(playerPed, false)
 		local vehicleProps = ESX.Game.GetVehicleProperties(vehicle)
-		local current = GetPlayersLastVehicle(GetPlayerPed(-1), true)
+		local current = GetPlayersLastVehicle(PlayerPedId(), true)
 		local engineHealth = GetVehicleEngineHealth(current)
 		local plate = vehicleProps.plate
 
@@ -2230,7 +2230,7 @@ function SpawnVehicle(vehicle, plate, fuel)
 		if Config.Main.LegacyFuel then
 			exports['LegacyFuel']:SetFuel(callback_vehicle, fuel)
 		end
-		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+		TaskWarpPedIntoVehicle(PlayerPedId(), callback_vehicle, -1)
 	end)
 
 	TriggerServerEvent('esx_advancedgarage:setVehicleState', plate, false)
@@ -2251,7 +2251,7 @@ function SpawnVehicle2(vehicle, plate, fuel)
 		if Config.Main.LegacyFuel then
 			exports['LegacyFuel']:SetFuel(callback_vehicle, fuel)
 		end
-		TaskWarpPedIntoVehicle(GetPlayerPed(-1), callback_vehicle, -1)
+		TaskWarpPedIntoVehicle(PlayerPedId(), callback_vehicle, -1)
 	end)
 
 	TriggerServerEvent('esx_advancedgarage:setVehicleState', plate, false)
@@ -2752,7 +2752,7 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		local playerPed = GetPlayerPed(-1)
+		local playerPed = PlayerPedId()
 		local playerVeh = GetVehiclePedIsIn(playerPed, false)
 		local model = GetEntityModel(playerVeh)
 
