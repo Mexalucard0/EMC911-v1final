@@ -168,7 +168,7 @@ AddEventHandler('esx:addInventoryItem', function(item, count, showNotification)
 	end
 
 	if ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-		ESX.ShowInventory()
+		--ESX.ShowInventory()
 	end
 end)
 
@@ -187,7 +187,7 @@ AddEventHandler('esx:removeInventoryItem', function(item, count, showNotificatio
 	end
 
 	if ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-		ESX.ShowInventory()
+		--ESX.ShowInventory()
 	end
 end)
 
@@ -453,7 +453,7 @@ end
 
 RegisterCommand('+inventory', function()
 	if not isDead and not ESX.UI.Menu.IsOpen('default', 'es_extended', 'inventory') then
-		ESX.ShowInventory()
+		--ESX.ShowInventory()
 	end
 end)
 

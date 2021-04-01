@@ -431,6 +431,9 @@ AddEventHandler('esx:onPickup', function(pickupId)
 		if pickup.type == 'item_standard' then
 			if xPlayer.canCarryItem(pickup.name, pickup.count) then
 				xPlayer.addInventoryItem(pickup.name, pickup.count)
+				if pickup.weaponID ~= nil then
+					TriggerEvent('DP_Inventory:weaponID', pickup.weaponID, xPlayer.identifier)
+				 end
 				success = true
 			else
 				xPlayer.showNotification(_U('threw_cannot_pickup'))
