@@ -1,7 +1,25 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 01, 2021 at 03:57 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `sesx`
+--
 
 -- --------------------------------------------------------
 
@@ -42,21 +60,6 @@ CREATE TABLE `addon_account_data` (
   `money` int(11) NOT NULL,
   `owner` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `addon_account_data`
---
-
-INSERT INTO `addon_account_data` (`id`, `account_name`, `money`, `owner`) VALUES
-(2, 'society_ambulance', 0, NULL),
-(3, 'society_banker', 0, NULL),
-(4, 'society_mechanic', 300, NULL),
-(5, 'society_police', 0, NULL),
-(6, 'society_realestateagent', 0, NULL),
-(7, 'society_taxi', 0, NULL),
-(8, 'bank_savings', 0, 'bdcd7528449c06e7db0461c8e736b486783c9c45'),
-(9, 'caution', 0, 'bdcd7528449c06e7db0461c8e736b486783c9c45'),
-(10, 'property_black_money', 0, 'bdcd7528449c06e7db0461c8e736b486783c9c45');
 
 -- --------------------------------------------------------
 
@@ -150,21 +153,6 @@ CREATE TABLE `datastore_data` (
   `owner` varchar(255) DEFAULT NULL,
   `data` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `datastore_data`
---
-
-INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
-(1, 'society_ambulance', NULL, '{}'),
-(2, 'society_mechanic', NULL, '{}'),
-(3, 'society_police', NULL, '{}'),
-(4, 'society_taxi', NULL, '{}'),
-(5, 'property', 'bdcd7528449c06e7db0461c8e736b486783c9c45', '{}'),
-(6, 'user_glasses', 'bdcd7528449c06e7db0461c8e736b486783c9c45', '{}'),
-(7, 'user_helmet', 'bdcd7528449c06e7db0461c8e736b486783c9c45', '{}'),
-(8, 'user_ears', 'bdcd7528449c06e7db0461c8e736b486783c9c45', '{}'),
-(9, 'user_mask', 'bdcd7528449c06e7db0461c8e736b486783c9c45', '{}');
 
 -- --------------------------------------------------------
 
@@ -608,6 +596,21 @@ INSERT INTO `properties` (`id`, `name`, `label`, `entering`, `exit`, `inside`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rented_vehicles`
+--
+
+CREATE TABLE `rented_vehicles` (
+  `vehicle` varchar(60) NOT NULL,
+  `plate` varchar(12) NOT NULL,
+  `player_name` varchar(255) NOT NULL,
+  `base_price` int(11) NOT NULL,
+  `rent_price` int(11) NOT NULL,
+  `owner` varchar(22) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shops`
 --
 
@@ -725,6 +728,17 @@ CREATE TABLE `users` (
   `height` int(11) DEFAULT NULL,
   `phone_number` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_lastcharacter`
+--
+
+CREATE TABLE `user_lastcharacter` (
+  `license` varchar(255) NOT NULL,
+  `charid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1665,6 +1679,12 @@ ALTER TABLE `properties`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rented_vehicles`
+--
+ALTER TABLE `rented_vehicles`
+  ADD PRIMARY KEY (`plate`);
+
+--
 -- Indexes for table `shops`
 --
 ALTER TABLE `shops`
@@ -1710,6 +1730,12 @@ ALTER TABLE `twitter_tweets`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`identifier`);
+
+--
+-- Indexes for table `user_lastcharacter`
+--
+ALTER TABLE `user_lastcharacter`
+  ADD PRIMARY KEY (`license`);
 
 --
 -- Indexes for table `user_licenses`
@@ -1851,7 +1877,7 @@ ALTER TABLE `weashops`
 -- AUTO_INCREMENT for table `addon_account_data`
 --
 ALTER TABLE `addon_account_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `addon_inventory_items`
@@ -1869,7 +1895,7 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT for table `datastore_data`
 --
 ALTER TABLE `datastore_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `fine_types`
@@ -1899,7 +1925,7 @@ ALTER TABLE `phone_app_chat`
 -- AUTO_INCREMENT for table `phone_calls`
 --
 ALTER TABLE `phone_calls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `phone_messages`
@@ -1959,7 +1985,7 @@ ALTER TABLE `twitter_tweets`
 -- AUTO_INCREMENT for table `user_licenses`
 --
 ALTER TABLE `user_licenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vs_ambulance`
@@ -2009,11 +2035,6 @@ ALTER TABLE `twitter_tweets`
   ADD CONSTRAINT `FK_twitter_tweets_twitter_accounts` FOREIGN KEY (`authorId`) REFERENCES `twitter_accounts` (`id`);
 COMMIT;
 
---
--- Kashacters compatability
---
-CREATE TABLE `user_lastcharacter` (
-  `license` varchar(255) NOT NULL,
-  `charid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-COMMIT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

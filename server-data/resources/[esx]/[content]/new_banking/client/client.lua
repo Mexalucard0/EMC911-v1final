@@ -44,7 +44,7 @@ if bankMenu then
 				if IsControlJustPressed(1, 38) then
 					openUI()
 					TriggerServerEvent('bank:balance')
-					local ped = GetPlayerPed(-1)
+					local ped = PlayerPedId()
 				end
 			end
 
@@ -183,7 +183,7 @@ end)
 --==            Capture Bank Distance          ==
 --===============================================
 function nearBank()
-	local player = GetPlayerPed(-1)
+	local player = PlayerPedId()
 	local playerloc = GetEntityCoords(player, 0)
 
 	for _, search in pairs(Config.Bank) do
@@ -196,7 +196,7 @@ function nearBank()
 end
 
 function nearATM()
-	local player = GetPlayerPed(-1)
+	local player = PlayerPedId()
 	local playerloc = GetEntityCoords(player, 0)
 
 	for _, search in pairs(Config.ATM) do

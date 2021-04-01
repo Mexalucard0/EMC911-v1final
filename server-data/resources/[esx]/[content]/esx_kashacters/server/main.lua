@@ -9,20 +9,17 @@ local IdentifierTables = {
     {table = "billing", column = "identifier"},
     {table = "datastore_data", column = "owner"},
     {table = "owned_vehicles", column = "owner"},
-    {table = "owned_properties", column = "owner"},
---    {table = "rented_vehicles", column = "owner"}, Currently, sesx does not utilize rented vehicles.
+    {table = "rented_vehicles", column = "owner"},
     {table = "users", column = "identifier"},
     {table = "user_licenses", column = "owner"}
 }
-
-StopResource("spanwmanager")
 
 RegisterServerEvent("kashactersS:SetupCharacters")
 AddEventHandler('kashactersS:SetupCharacters', function()
     local src = source
     local LastCharId = GetLastCharacter(src)
 
-    SetIdentifierToChar(GetRockstarID(src), LastCharId)
+    SetIdentifierToChar(GetSteamID(src), LastCharId)
     local Characters = GetPlayerCharacters(src)
     TriggerClientEvent('kashactersC:SetupUI', src, Characters)
 end)
@@ -34,7 +31,7 @@ AddEventHandler('kashactersS:CharacterChosen', function(charid, ischar)
     local spawn = {}
     if type(charid) == "number" and string.len(charid) == 1 and type(ischar) == "boolean" then
         SetLastCharacter(src, tonumber(charid))
-        SetCharToIdentifier(GetRockstarID(src), tonumber(charid))
+        SetCharToIdentifier(GetSteamID(src), tonumber(charid))
     
         if ischar == true then
             new = false
@@ -54,7 +51,7 @@ RegisterServerEvent("kashactersS:DeleteCharacter")
 AddEventHandler('kashactersS:DeleteCharacter', function(charid)
     local src = source
     if type(charid) == "number" and string.len(charid) == 1 then
-        DeleteCharacter(GetRockstarID(src), charid)
+        DeleteCharacter(GetSteamID(src), charid)
         TriggerClientEvent("kashactersC:ReloadCharacters", src)
     else
         -- Trigger Ban Event here to ban individuals trying to use SQL Injections
@@ -62,7 +59,7 @@ AddEventHandler('kashactersS:DeleteCharacter', function(charid)
 end)
 
 function GetPlayerCharacters(source)
-    local Chars = MySQLAsyncExecute("SELECT * FROM `users` WHERE identifier LIKE '%"..GetIdentifierWithoutLicense(GetRockstarID(source)).."%'")
+    local Chars = MySQLAsyncExecute("SELECT * FROM `users` WHERE identifier LIKE '%"..GetIdentifierWithoutSteam(GetSteamID(source)).."%'")
     for i = 1, #Chars, 1 do
         charJob = MySQLAsyncExecute("SELECT * FROM `jobs` WHERE `name` = '"..Chars[i].job.."'")
         charJobgrade = MySQLAsyncExecute("SELECT * FROM `job_grades` WHERE `grade` = '"..Chars[i].job_grade.."' AND `job_name` = '"..Chars[i].job.."'")
@@ -85,40 +82,40 @@ function GetPlayerCharacters(source)
 end
 
 function GetLastCharacter(source)
-    local LastChar = MySQLAsyncExecute("SELECT `charid` FROM `user_lastcharacter` WHERE `license` = '"..GetRockstarID(source).."'")
+    local LastChar = MySQLAsyncExecute("SELECT `charid` FROM `user_lastcharacter` WHERE `license` = '"..GetSteamID(source).."'")
 
     if LastChar[1] ~= nil and LastChar[1].charid ~= nil then
         return tonumber(LastChar[1].charid)
     else
-        MySQLAsyncExecute("INSERT INTO `user_lastcharacter` (`license`, `charid`) VALUES('"..GetRockstarID(source).."', 1)")
+        MySQLAsyncExecute("INSERT INTO `user_lastcharacter` (`license`, `charid`) VALUES('"..GetSteamID(source).."', 1)")
         return 1
     end
 end
 
 function SetLastCharacter(source, charid)
-    MySQLAsyncExecute("UPDATE `user_lastcharacter` SET `charid` = '"..charid.."' WHERE `license` = '"..GetRockstarID(source).."'")
+    MySQLAsyncExecute("UPDATE `user_lastcharacter` SET `charid` = '"..charid.."' WHERE `license` = '"..GetSteamID(source).."'")
 end
 
 function SetIdentifierToChar(identifier, charid)
     for _, itable in pairs(IdentifierTables) do
-        MySQLAsyncExecute("UPDATE `"..itable.table.."` SET `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutLicense(identifier).."' WHERE `"..itable.column.."` = '"..identifier.."'")
+        MySQLAsyncExecute("UPDATE `"..itable.table.."` SET `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutSteam(identifier).."' WHERE `"..itable.column.."` = '"..identifier.."'")
     end
 end
 
 function SetCharToIdentifier(identifier, charid)
     for _, itable in pairs(IdentifierTables) do
-        MySQLAsyncExecute("UPDATE `"..itable.table.."` SET `"..itable.column.."` = '"..identifier.."' WHERE `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutLicense(identifier).."'")
+        MySQLAsyncExecute("UPDATE `"..itable.table.."` SET `"..itable.column.."` = '"..identifier.."' WHERE `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutSteam(identifier).."'")
     end
 end
 
 function DeleteCharacter(identifier, charid)
     for _, itable in pairs(IdentifierTables) do
-        MySQLAsyncExecute("DELETE FROM `"..itable.table.."` WHERE `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutLicense(identifier).."'")
+        MySQLAsyncExecute("DELETE FROM `"..itable.table.."` WHERE `"..itable.column.."` = 'Char"..charid..GetIdentifierWithoutSteam(identifier).."'")
     end
 end
 
 function GetSpawnPos(source)
-    local spawn = MySQLAsyncExecute("SELECT `position` FROM `users` WHERE `identifier` = '"..GetRockstarID(source).."'")
+    local spawn = MySQLAsyncExecute("SELECT `position` FROM `users` WHERE `identifier` = '"..GetSteamID(source).."'")
     return json.decode(spawn[1].position)
 end
 
@@ -131,6 +128,23 @@ function GetRockstarID(playerId)
 
     for k,v in ipairs(GetPlayerIdentifiers(playerId)) do
         if string.match(v, 'license') then
+            identifier = v
+            break
+        end
+    end
+
+    return identifier
+end
+
+function GetIdentifierWithoutSteam(Identifier)
+    return string.gsub(Identifier, "steam", "")
+end
+
+function GetSteamID(playerId)
+    local identifier
+
+    for k,v in ipairs(GetPlayerIdentifiers(playerId)) do
+        if string.match(v, 'steam') then
             identifier = v
             break
         end

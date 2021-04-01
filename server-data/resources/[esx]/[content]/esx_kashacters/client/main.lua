@@ -45,7 +45,7 @@ AddEventHandler('kashactersC:SetupCharacters', function()
         Citizen.Wait(10)
     end
     SetTimecycleModifier('hud_def_blur')
-    FreezeEntityPosition(GetPlayerPed(-1), true)
+    FreezeEntityPosition(PlayerPedId(), true)
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", -1355.93,-1487.78,520.75, 300.00,0.00,0.00, 100.00, false, 0)
     SetCamActive(cam, true)
     RenderScriptCams(true, false, 1, true, true)
@@ -67,7 +67,7 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn, isnew)
     local pos = spawn
 
     SetTimecycleModifier('default')
-    SetEntityCoords(GetPlayerPed(-1), pos.x, pos.y, pos.z)
+    SetEntityCoords(PlayerPedId(), pos.x, pos.y, pos.z)
     DoScreenFadeIn(500)
 
     Citizen.Wait(500)
@@ -87,7 +87,7 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn, isnew)
     PlaySoundFrontend(-1, "Zoom_Out", "DLC_HEIST_PLANNING_BOARD_SOUNDS", 1)
     RenderScriptCams(false, true, 500, true, true)
     PlaySoundFrontend(-1, "CAR_BIKE_WHOOSH", "MP_LOBBY_SOUNDS", 1)
-    FreezeEntityPosition(GetPlayerPed(-1), false)
+    FreezeEntityPosition(PlayerPedId(), false)
 
     Citizen.Wait(500)
 
@@ -101,6 +101,19 @@ AddEventHandler('kashactersC:SpawnCharacter', function(spawn, isnew)
     TriggerEvent('esx_ambulancejob:multicharacter', source)
     if isnew == true then
         TriggerEvent('esx_identity:showRegisterIdentity')
+    else
+        Citizen.Wait(1000)
+        ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+            local isMale = skin.sex == 0
+
+            TriggerEvent('skinchanger:loadDefaultModel', isMale, function()
+                ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin)
+                    TriggerEvent('skinchanger:loadSkin', skin)
+                    TriggerEvent('esx:restoreLoadout')
+                end)
+            end)
+
+        end)
     end
 end)
 
