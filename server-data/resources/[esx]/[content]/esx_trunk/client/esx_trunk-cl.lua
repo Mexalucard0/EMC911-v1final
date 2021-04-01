@@ -68,15 +68,15 @@ function getItemyWeight(item)
 end
 
 function VehicleInFront()
-    local pos = GetEntityCoords(GetPlayerPed(-1))
-    local entityWorld = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, 4.0, 0.0)
-    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, GetPlayerPed(-1), 0)
+    local pos = GetEntityCoords(PlayerPedId())
+    local entityWorld = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 4.0, 0.0)
+    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, PlayerPedId(), 0)
     local a, b, c, d, result = GetRaycastResult(rayHandle)
     return result
 end
 
 function openmenuvehicle()
-	local playerPed = GetPlayerPed(-1)
+	local playerPed = PlayerPedId()
 	local coords    = GetEntityCoords(playerPed)
 	local vehicle   =VehicleInFront()
   globalplate  = GetVehicleNumberPlateText(vehicle)
@@ -118,10 +118,10 @@ function openmenuvehicle()
     if globalplate ~= nil or globalplate ~= "" or globalplate ~= " " then
       CloseToVehicle = true
       local vehFront = VehicleInFront()
-      local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1),true))
+      local x,y,z = table.unpack(GetEntityCoords(PlayerPedId(),true))
       local closecar = GetClosestVehicle(x, y, z, 4.0, 0, 71)
 
-      if vehFront > 0 and closecar ~= nil and GetPedInVehicleSeat(closecar, -1) ~= GetPlayerPed(-1) then
+      if vehFront > 0 and closecar ~= nil and GetPedInVehicleSeat(closecar, -1) ~= PlayerPedId() then
         lastVehicle = vehFront
         local model = GetDisplayNameFromVehicleModel(GetEntityModel(closecar))
         local locked = GetVehicleDoorLockStatus(closecar)
@@ -197,7 +197,7 @@ end)
 Citizen.CreateThread(function()
   while true do
   Wait(0)
-	local pos = GetEntityCoords(GetPlayerPed(-1))
+	local pos = GetEntityCoords(PlayerPedId())
 	if CloseToVehicle then
 		local vehicle = GetClosestVehicle(pos['x'], pos['y'], pos['z'], 2.0, 0, 70)
 		if DoesEntityExist(vehicle) then
@@ -216,7 +216,7 @@ function OpenCoffreInventoryMenu(plate,max)
 
   ESX.TriggerServerCallback('esx_trunk:getInventoryV', function(inventory)
     local plate = plate
-    local owner= GetPlayerPed(-1)
+    local owner= PlayerPedId()
     local elements = {}
     table.insert(elements, {label = _U('deposit'), type = 'deposer', value = 'deposer'})
     table.insert(elements, {label = _U('dirty_money') .. inventory.blackMoney, type = 'item_account', value = 'black_money'})
@@ -319,7 +319,7 @@ function OpenPlayerInventoryMenu(owner,plate,max,weight)
 
     end
 
-    local playerPed  = GetPlayerPed(-1)
+    local playerPed  = PlayerPedId()
     local weaponList = ESX.GetWeaponList()
 
     for i=1, #weaponList, 1 do

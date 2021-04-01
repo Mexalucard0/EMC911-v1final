@@ -212,7 +212,7 @@ elseif not Config.UseDeferrals then
 
 			playerIdentity[xPlayer.identifier] = nil
 		else
-			TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
+			--TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
 		end
 	end)
 
@@ -273,10 +273,10 @@ elseif not Config.UseDeferrals then
 				else
 					playerIdentity[xPlayer.identifier] = nil
 					alreadyRegistered[xPlayer.identifier] = false
-					TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
+					--TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
 				end
 			else
-				TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
+				--TriggerClientEvent('esx_identity:showRegisterIdentity', xPlayer.source)
 			end
 		end)
 	end
