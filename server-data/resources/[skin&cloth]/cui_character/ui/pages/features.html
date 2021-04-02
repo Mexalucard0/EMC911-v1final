@@ -1,0 +1,448 @@
+<div class="group" id="brow">
+    <h2 class="header">眉毛</h2>
+    <div class="slider interval">
+        <h3 class="header">深度</h3>
+        <div class="valuelabel left">进</div>
+        <div class="valuelabel right">出</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="eyebrows_6" data-index="7">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">高度</h3>
+        <div class="valuelabel left">上</div>
+        <div class="valuelabel right">下</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="eyebrows_5" data-index="6">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="eyes">
+    <h2 class="header">眼睛</h2>
+    <div class="list">
+        <h3 class="header">颜色</h3>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <select class="eyecolor" id="eye_color">
+                <!-- NOTE: Populated via javascript -->
+                <option value="0" selected="selected">绿色</option>
+                <option value="1">翠绿色</option>
+                <option value="2">浅蓝色</option>
+                <option value="3">海洋蓝色</option>
+                <option value="4">浅棕色</option>
+                <option value="5">深棕色</option>
+                <option value="6">淡褐色</option>
+                <option value="7">深灰色</option>
+                <option value="8">浅灰色</option>
+            </select>
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">大小</h3>
+        <div class="valuelabel left">眯眼</div>
+        <div class="valuelabel right">睁开</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="eye_squint" data-index="11">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="nose">
+    <h2 class="header">鼻子</h2>
+    <div class="slider interval">
+        <h3 class="header">宽度</h3>
+        <div class="valuelabel left">窄</div>
+        <div class="valuelabel right">宽</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="nose_1" data-index="0">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">高度</h3>
+        <div class="valuelabel left">下</div>
+        <div class="valuelabel right">上</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="nose_2" data-index="1">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">长度</h3>
+        <div class="valuelabel left">短</div>
+        <div class="valuelabel right">长</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="nose_3" data-index="2">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">鼻梁高度</h3>
+        <div class="valuelabel left">内弯</div>
+        <div class="valuelabel right">外弯</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="nose_4" data-index="3">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">鼻梁形状</h3>
+        <div class="valuelabel left">左歪</div>
+        <div class="valuelabel right">右歪</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="nose_6" data-index="5">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">鼻尖位置</h3>
+        <div class="valuelabel left">下</div>
+        <div class="valuelabel right">上</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="nose_5" data-index="4">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="cheeks">
+    <h2 class="header">脸颊</h2>
+    <div class="slider interval">
+        <h3 class="header">形状</h3>
+        <div class="valuelabel left">消瘦</div>
+        <div class="valuelabel right">肿胀</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="cheeks_3" data-index="10">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">颧骨宽度</h3>
+        <div class="valuelabel left">窄</div>
+        <div class="valuelabel right">宽</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="cheeks_2" data-index="9">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">颧骨高度</h3>
+        <div class="valuelabel left">低</div>
+        <div class="valuelabel right">高</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="cheeks_1" data-index="8">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="jaw">
+    <h2 class="header">下颌</h2>
+    <div class="slider interval">
+        <h3 class="header">下颌宽度</h3>
+        <div class="valuelabel left">窄</div>
+        <div class="valuelabel right">宽</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="jaw_1" data-index="13">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">下颌形状</h3>
+        <div class="valuelabel left">圆</div>
+        <div class="valuelabel right">方</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="jaw_2" data-index="14">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="chin">
+    <h2 class="header">颚骨</h2>
+    <div class="slider interval">
+        <h3 class="header">颚骨宽度</h3>
+        <div class="valuelabel left">尖</div>
+        <div class="valuelabel right">方</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="chin_3" data-index="17">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">颚骨长度</h3>
+        <div class="valuelabel left">短</div>
+        <div class="valuelabel right">长</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="chin_1" data-index="15">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">颚骨位置</h3>
+        <div class="valuelabel left">凹进</div>
+        <div class="valuelabel right">突出</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="chin_2" data-index="16">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+    <div class="slider interval">
+        <h3 class="header">颚骨形状</h3>
+        <div class="valuelabel left">圆润</div>
+        <div class="valuelabel right">凹陷</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature" id="chin_4" data-index="18">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="lips">
+    <h2 class="header">嘴唇</h2>
+    <div class="slider interval">
+        <h3 class="header">嘴唇厚度</h3>
+        <div class="valuelabel left">薄</div>
+        <div class="valuelabel right">厚</div>
+        <div class="controls">
+            <button class="arrow left"></button>
+            <input type="range" min="-100" max="100" class="facefeature inverted" id="lip_thickness" data-index="12">
+            <button class="arrow right"></button>
+        </div>
+    </div>
+</div>
+<div class="group" id="skin">
+    <h2 class="header">皮肤</h2>
+    <div class="subgroup">
+        <div class="list">
+            <h3 class="header">皮肤斑点</h3>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <!--
+                    NOTE:
+                    Some skin blemishes have an extra, hidden property that adds an effect to the body as well,
+                    the effect is the same for all the skin blemishes.
+
+                    Affected ones are:
+                    Cheek Rash, Face Rash, Eyesore, Chin Rash, Greasy, Acne Scarring
+
+                    In GTA Online this effect does not have an opacity and does not share it with skin blemishes,
+                    even if skin blemishes opacity is set to zero, this effect appears in full.
+                    I decided to improve on it and link the blemishes opacity slider to both effects.
+
+                    This effect is the overlay index 12 and has two variants but only one ever appears in game, 
+                    the '0' seems to be unused. Only way to disable it, is to set it to 255.
+                -->
+                <select class="headoverlayextra" id="blemishes_1" data-index="0" data-keyextra="bodyb_3" data-indexextra="12">
+                    <option value="255" data-extra="255" selected="selected">无</option>
+                    <option value="0"  data-extra="255">麻疹</option>
+                    <option value="1"  data-extra="255">丘疹</option>
+                    <option value="2"  data-extra="255">斑点</option>
+                    <option value="3"  data-extra="255">痘痘</option>
+                    <option value="4"  data-extra="255">黑头</option>
+                    <option value="5"  data-extra="255">隆起</option>
+                    <option value="6"  data-extra="255">脓包</option>
+                    <option value="7"  data-extra="255">粉刺</option>
+                    <option value="8"  data-extra="255">饱满痤疮</option>
+                    <option value="9"  data-extra="255">痤疮</option>
+                    <option value="10" data-extra="1">脸颊皮疹</option>
+                    <option value="11" data-extra="1">面部皮疹</option>
+                    <option value="12" data-extra="255">疹子</option>
+                    <option value="13" data-extra="255">青春痘</option>
+                    <option value="14" data-extra="1">辣眼睛</option>
+                    <option value="15" data-extra="1">下巴皮疹</option>
+                    <option value="16" data-extra="255">双面</option>
+                    <option value="17" data-extra="255">T形区域</option>
+                    <option value="18" data-extra="1">油腻</option>
+                    <option value="19" data-extra="255">瘢痕</option>
+                    <option value="20" data-extra="1">痘疤</option>
+                    <option value="21" data-extra="255">饱满痘疤</option>
+                    <option value="22" data-extra="255">唇疱疹</option>
+                    <option value="23" data-extra="255">脓疱创</option>
+                </select>
+                <button class="arrow right"></button>
+            </div>
+        </div>
+        <div class="slider opacity">
+            <h3 class="header">不透明度</h3>
+            <div class="valuelabel center">50%</div>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <input type="range" min="0" max="100" class="headoverlayextra" id="blemishes_2" data-index="0" data-keyextra="bodyb_4" data-indexextra="12">
+                <button class="arrow right"></button>
+            </div>
+        </div>
+    </div>
+    <div class="subgroup">
+        <div class="list">
+            <h3 class="header">皮肤老化</h3>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <select class="headoverlay" id="age_1" data-index="3">
+                    <option value="255" selected="selected">无</option>
+                    <option value="0">鱼尾纹</option>
+                    <option value="1">细纹</option>
+                    <option value="2">中年</option>
+                    <option value="3">抬头纹</option>
+                    <option value="4">抑郁</option>
+                    <option value="5">显著</option>
+                    <option value="6">老化</option>
+                    <option value="7">饱经风霜</option>
+                    <option value="8">皱纹</option>
+                    <option value="9">下垂</option>
+                    <option value="10">生活困苦</option>
+                    <option value="11">复古风格</option>
+                    <option value="12">退休</option>
+                    <option value="13">瘾君子</option>
+                    <option value="14">老年</option>
+                </select>
+                <button class="arrow right"></button>
+            </div>
+        </div>
+        <div class="slider opacity">
+            <h3 class="header">不透明度</h3>
+            <div class="valuelabel center">50%</div>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <input type="range" min="0" max="100" class="headoverlay" id="age_2" data-index="3">
+                <button class="arrow right"></button>
+            </div>
+        </div>
+    </div>
+    <div class="subgroup">
+        <div class="list">
+            <h3 class="header">肤色</h3>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <select class="headoverlay" id="complexion_1" data-index="6">
+                    <option value="255" selected="selected">无</option>
+                    <option value="0">红颜</option>
+                    <option value="1">满脸须茬</option>
+                    <option value="2">潮红</option>
+                    <option value="3">晒伤</option>
+                    <option value="4">淤青</option>
+                    <option value="5">酗酒</option>
+                    <option value="6">斑块</option>
+                    <option value="7">图腾</option>
+                    <option value="8">血管</option>
+                    <option value="9">伤痕累累</option>
+                    <option value="10">苍白</option>
+                    <option value="11">幽灵</option>
+                </select>
+                <button class="arrow right"></button>
+            </div>
+        </div>
+        <div class="slider opacity">
+            <h3 class="header">不透明度</h3>
+            <div class="valuelabel center">50%</div>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <input type="range" min="0" max="100" class="headoverlay" id="complexion_2" data-index="6">
+                <button class="arrow right"></button>
+            </div>
+        </div>
+    </div>
+    <div class="subgroup">
+        <div class="list">
+            <h3 class="header">痣和雀斑</h3>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <!--
+                    NOTE:
+                    Moles & Freckles are a face property which might also affect the body.
+                    Each face option is paired with a body effect (can be 'None').
+
+                    'Body Blemishes' overlay functions support this effect,
+                    they are NOT a separate customization option. 
+
+                    In GTA Online opacity only affects the face part, the body effect is always full
+                    (1.0 opacity) just like for skin blemishes. Similarly to skin blemishes, 
+                    I decided to improve on it and link the opacity slider to both effects.
+
+                    Sadly, I could not determine with 100% accurracy which options are paired up 
+                    with what effect. The pairings data is all based on 'looking and comparing'.
+                -->
+                <select class="headoverlayextra" id="moles_1" data-index="9" data-keyextra="bodyb_1" data-indexextra="11">
+                    <option value="255" data-extra="255" selected="selected">无</option>
+                    <option value="0"  data-extra="255">天使脸</option>
+                    <option value="1"  data-extra="10">麻面</option>
+                    <option value="2"  data-extra="11">不平整</option>
+                    <option value="3"  data-extra="11">雀斑</option>
+                    <option value="4"  data-extra="10">鼻子双侧雀斑</option>
+                    <option value="5"  data-extra="10">洋娃娃</option>
+                    <option value="6"  data-extra="10">小精灵</option>
+                    <option value="7"  data-extra="10">日光斑</option>
+                    <option value="8"  data-extra="6">美人痣</option>
+                    <option value="9"  data-extra="1">纹路</option>
+                    <option value="10" data-extra="7">模特式</option>
+                    <option value="11" data-extra="3">稀疏斑点</option>
+                    <option value="12" data-extra="9">芝麻点</option>
+                    <option value="13" data-extra="1">雨点斑</option>
+                    <option value="14" data-extra="2">双底</option>
+                    <option value="15" data-extra="8">单面</option>
+                    <option value="16" data-extra="7">成双对</option>
+                    <option value="17" data-extra="2">赘生</option>
+                </select>
+                <button class="arrow right"></button>
+            </div>
+        </div>
+        <div class="slider opacity">
+            <h3 class="header">不透明度</h3>
+            <div class="valuelabel center">50%</div>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <input type="range" min="0" max="100" class="headoverlayextra" id="moles_2" data-index="9" data-keyextra="bodyb_2" data-indexextra="11">
+                <button class="arrow right"></button>
+            </div>
+        </div>
+    </div>
+    <div class="subgroup">
+        <div class="list">
+            <h3 class="header">皮肤损伤</h3>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <select class="headoverlay" id="sun_1" data-index="7">
+                    <option value="255" selected="selected">无</option>
+                    <option value="0">不平整</option>
+                    <option value="1">砂纸</option>
+                    <option value="2">斑块</option>
+                    <option value="3">粗糙</option>
+                    <option value="4">似皮革</option>
+                    <option value="5">有纹理</option>
+                    <option value="6">粗粒</option>
+                    <option value="7">高低不平</option>
+                    <option value="8">褶皱</option>
+                    <option value="9">干裂</option>
+                    <option value="10">粗砂质</option>
+                </select>
+                <button class="arrow right"></button>
+            </div>
+        </div>
+        <div class="slider opacity">
+            <h3 class="header">不透明度</h3>
+            <div class="valuelabel center">50%</div>
+            <div class="controls">
+                <button class="arrow left"></button>
+                <input type="range" min="0" max="100" class="headoverlay" id="sun_2" data-index="7">
+                <button class="arrow right"></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,7 @@ end)
 -- https://forum.fivem.net/t/release-esx-kashacters-multi-character/251613/316?u=xxfri3ndlyxx --
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(200)
+        Citizen.Wait(0)
         if ESX ~= nil then
             if NetworkIsSessionStarted() and not ESX.IsPlayerLoaded() then
                 TriggerServerEvent("kashactersS:SetupCharacters")

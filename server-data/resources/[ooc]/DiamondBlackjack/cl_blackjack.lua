@@ -40,24 +40,39 @@ local cfg = {}
 
 
 --Please note the config order is important, dealerPositions must start from 0 and increase consecutively 
--- 请注意，配置顺序很重要，dealerPositions必须从0开始并连续增加
 cfg.blackjackTables = {
     --[id] = {x,y,z,heading}
     [0] = {
-        dealerPos = vector3(984.41, 57.81, 75.49),
-        dealerHeading = 112.16,
-        tablePos = vector3(983.6525, 57.50018, 74.4902),
-        tableHeading = 288.0,
+        dealerPos = vector3(1149.3828125,269.19174194336,-52.020873718262),
+        dealerHeading = 46.0,
+        tablePos = vector3(1148.837, 269.747, -52.8409),
+        tableHeading = -134.69,
         distance = 1000.0,
         prop = "vw_prop_casino_blckjack_01"
     },
     [1] = {
-        dealerPos = vector3(990.43,58.57,75.49),
-        dealerHeading = 235.5,
-        tablePos = vector3(991.2208,58.07944,74.48471),
-        tableHeading = 58.0,
+        dealerPos = vector3(1151.28,267.33,-51.840),
+        dealerHeading = 222.2,
+        tablePos = vector3(1151.84, 266.747, -52.8409),
+        tableHeading = 45.31,
         distance = 1000.0,
         prop = "vw_prop_casino_blckjack_01"
+    },
+    [2] = {
+        dealerPos = vector3(1128.862,261.795,-51.0357),
+        dealerHeading = 315.0,
+        tablePos = vector3(1129.406, 262.3578, -52.041),
+        tableHeading = 135.31,
+        distance = 1000.0,
+        prop = "vw_prop_casino_blckjack_01b"
+    },
+    [3] = {
+        dealerPos = vector3(1143.859,246.783,-51.035),
+        dealerHeading = 313.0,
+        tablePos = vector3(1144.429, 247.3352, -52.041),
+        tableHeading = 135.31,
+        distance = 1000.0,
+        prop = "vw_prop_casino_blckjack_01b"
     },
 }
 

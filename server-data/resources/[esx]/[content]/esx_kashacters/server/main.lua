@@ -21,6 +21,7 @@ AddEventHandler('kashactersS:SetupCharacters', function()
 
     SetIdentifierToChar(GetSteamID(src), LastCharId)
     local Characters = GetPlayerCharacters(src)
+    Citizen.Wait(1000)
     TriggerClientEvent('kashactersC:SetupUI', src, Characters)
 end)
 

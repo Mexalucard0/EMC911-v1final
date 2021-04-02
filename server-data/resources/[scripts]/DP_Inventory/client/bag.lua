@@ -4,7 +4,12 @@ RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
     PlayerData = xPlayer
 	ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-        if skin.bags_1 ~= 45 then
+        if skin == nil then
+			repeat
+				Citizen.Wait(1000)
+			until(skin ~= nil)
+		end
+		if skin.bags_1 ~= 45 then
 			hasBag = false
 		else
 			hasBag = true
