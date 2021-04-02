@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 11:52 PM
+-- Generation Time: Apr 02, 2021 at 10:59 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -74,23 +74,23 @@ CREATE TABLE `addon_account_data` (
 --
 
 INSERT INTO `addon_account_data` (`id`, `account_name`, `money`, `owner`) VALUES
-(93, 'society_cardealer', 0, NULL),
-(94, 'society_ambulance', 0, NULL),
-(95, 'society_banker', 0, NULL),
-(96, 'society_mechanic', 0, NULL),
-(97, 'society_police', 0, NULL),
-(98, 'society_police_black_money', 0, NULL),
-(99, 'society_police_money', 0, NULL),
-(100, 'society_realestateagent', 0, NULL),
-(101, 'society_taxi', 0, NULL),
-(102, 'bag_black_money', 0, 'steam:1100001121b6bdb'),
-(103, 'bag_money', 0, 'steam:1100001121b6bdb'),
-(104, 'caution', 0, 'steam:1100001121b6bdb'),
-(105, 'bank_savings', 0, 'steam:1100001121b6bdb'),
-(106, 'locker', 0, 'steam:1100001121b6bdb'),
-(107, 'locker_black', 0, 'steam:1100001121b6bdb'),
-(108, 'locker_cash', 0, 'steam:1100001121b6bdb'),
-(109, 'property_black_money', 0, 'steam:1100001121b6bdb');
+(126, 'society_ambulance', 0, NULL),
+(127, 'society_banker', 0, NULL),
+(128, 'society_cardealer', 0, NULL),
+(129, 'society_mechanic', 0, NULL),
+(130, 'society_police', 0, NULL),
+(131, 'society_police_black_money', 0, NULL),
+(132, 'society_police_money', 0, NULL),
+(133, 'society_realestateagent', 0, NULL),
+(134, 'society_taxi', 0, NULL),
+(135, 'bag_black_money', 0, 'steam:1100001121b6bdb'),
+(136, 'bag_money', 0, 'steam:1100001121b6bdb'),
+(137, 'bank_savings', 0, 'steam:1100001121b6bdb'),
+(138, 'caution', 0, 'steam:1100001121b6bdb'),
+(139, 'locker', 0, 'steam:1100001121b6bdb'),
+(140, 'locker_black', 0, 'steam:1100001121b6bdb'),
+(141, 'locker_cash', 0, 'steam:1100001121b6bdb'),
+(142, 'property_black_money', 0, 'steam:1100001121b6bdb');
 
 -- --------------------------------------------------------
 
@@ -130,6 +130,35 @@ CREATE TABLE `addon_inventory_items` (
   `name` varchar(100) NOT NULL,
   `count` int(11) NOT NULL,
   `owner` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `allhousing`
+--
+
+CREATE TABLE `allhousing` (
+  `id` int(11) NOT NULL,
+  `owner` varchar(50) NOT NULL,
+  `ownername` varchar(50) NOT NULL,
+  `owned` tinyint(4) NOT NULL,
+  `price` int(11) NOT NULL,
+  `resalepercent` int(11) NOT NULL,
+  `resalejob` varchar(50) NOT NULL,
+  `entry` longtext DEFAULT NULL,
+  `garage` longtext DEFAULT NULL,
+  `furniture` longtext DEFAULT NULL,
+  `shell` varchar(50) NOT NULL,
+  `interior` varchar(50) NOT NULL,
+  `shells` longtext DEFAULT NULL,
+  `doors` longtext DEFAULT NULL,
+  `housekeys` longtext DEFAULT NULL,
+  `wardrobe` longtext DEFAULT NULL,
+  `inventory` longtext DEFAULT NULL,
+  `inventorylocation` longtext DEFAULT NULL,
+  `mortgage_owed` int(11) NOT NULL DEFAULT 0,
+  `last_repayment` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -211,17 +240,17 @@ CREATE TABLE `datastore_data` (
 --
 
 INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
-(116, 'society_ambulance', NULL, '{}'),
-(117, 'society_mechanic', NULL, '{}'),
-(118, 'society_police', NULL, '{}'),
-(119, 'society_taxi', NULL, '{}'),
-(120, 'bag', 'steam:1100001121b6bdb', '{}'),
-(121, 'locker', 'steam:1100001121b6bdb', '{}'),
-(122, 'property', 'steam:1100001121b6bdb', '{}'),
-(123, 'user_mask', 'steam:1100001121b6bdb', '{}'),
-(124, 'user_glasses', 'steam:1100001121b6bdb', '{}'),
-(125, 'user_helmet', 'steam:1100001121b6bdb', '{}'),
-(126, 'user_ears', 'steam:1100001121b6bdb', '{}');
+(148, 'society_ambulance', NULL, '{}'),
+(149, 'society_mechanic', NULL, '{}'),
+(150, 'society_police', NULL, '{}'),
+(151, 'society_taxi', NULL, '{}'),
+(152, 'bag', 'steam:1100001121b6bdb', '{}'),
+(153, 'locker', 'steam:1100001121b6bdb', '{}'),
+(154, 'property', 'steam:1100001121b6bdb', '{\"dressing\":[{\"skin\":{\"complexion_2\":100,\"cheeks_1\":0,\"decals_1\":0,\"righthand_1\":-1,\"beard_3\":0,\"beard_4\":0,\"lipstick_4\":0,\"eyebrows_1\":0,\"chin_3\":0,\"lipstick_3\":0,\"ears_2\":0,\"lefthand_2\":0,\"righthand_2\":0,\"moles_2\":100,\"chin_4\":0,\"helmet_1\":-1,\"arms\":15,\"makeup_type\":0,\"chin_2\":0,\"neck_thickness\":0,\"shoes_1\":34,\"age_1\":255,\"ears_1\":0,\"complexion_1\":255,\"mask_1\":0,\"blush_2\":100,\"nose_1\":0,\"cheeks_3\":0,\"torso_1\":7,\"glasses_1\":-1,\"blush_1\":255,\"eye_color\":0,\"nose_6\":0,\"bodyb_1\":255,\"lip_thickness\":0,\"nose_4\":0,\"neckarm_1\":0,\"eyebrows_5\":0,\"beard_2\":100,\"eyebrows_2\":100,\"eyebrows_3\":0,\"skin_md_weight\":50,\"decals_2\":0,\"makeup_4\":255,\"blush_3\":0,\"eye_squint\":0,\"chin_1\":0,\"hair_2\":0,\"torso_2\":0,\"chest_2\":100,\"moles_1\":255,\"nose_3\":0,\"makeup_2\":100,\"helmet_2\":0,\"cheeks_2\":0,\"blemishes_1\":255,\"sex\":0,\"bproof_1\":0,\"face_md_weight\":50,\"makeup_3\":255,\"age_2\":100,\"bodyb_2\":100,\"tshirt_1\":23,\"mom\":21,\"makeup_1\":255,\"bags_2\":0,\"nose_2\":0,\"chest_4\":0,\"chest_1\":255,\"mask_2\":0,\"pants_2\":0,\"blemishes_2\":100,\"sun_1\":255,\"hair_color_1\":0,\"hair_color_2\":0,\"nose_5\":0,\"bags_1\":0,\"neckarm_2\":0,\"beard_1\":255,\"shoes_2\":0,\"lefthand_1\":-1,\"glasses_2\":0,\"jaw_1\":0,\"bodyb_3\":255,\"pants_1\":6,\"sun_2\":100,\"eyebrows_4\":0,\"dad\":0,\"lipstick_1\":255,\"chest_3\":0,\"jaw_2\":0,\"tshirt_2\":0,\"arms_2\":0,\"hair_1\":0,\"bodyb_4\":100,\"lipstick_2\":100,\"bproof_2\":0,\"eyebrows_6\":0},\"label\":\"TEST\"},{\"label\":\"TEST\",\"skin\":{\"complexion_2\":100,\"cheeks_1\":0,\"decals_1\":0,\"righthand_1\":-1,\"beard_3\":0,\"beard_4\":0,\"lipstick_4\":0,\"eyebrows_1\":0,\"chin_3\":0,\"lipstick_3\":0,\"ears_2\":0,\"lefthand_2\":0,\"righthand_2\":0,\"moles_2\":100,\"chin_4\":0,\"age_2\":100,\"arms\":1,\"makeup_type\":0,\"chin_2\":0,\"neck_thickness\":0,\"shoes_1\":75,\"age_1\":255,\"ears_1\":0,\"complexion_1\":255,\"mask_1\":0,\"blush_2\":100,\"nose_1\":0,\"cheeks_3\":0,\"torso_1\":7,\"glasses_1\":-1,\"blush_1\":255,\"eyebrows_5\":0,\"nose_6\":0,\"bodyb_1\":255,\"lip_thickness\":0,\"makeup_1\":255,\"nose_4\":0,\"sun_1\":255,\"beard_2\":100,\"eyebrows_2\":100,\"makeup_4\":255,\"mask_2\":0,\"decals_2\":0,\"bproof_1\":0,\"helmet_1\":-1,\"eye_squint\":0,\"skin_md_weight\":50,\"hair_2\":0,\"torso_2\":2,\"chest_2\":100,\"moles_1\":255,\"nose_3\":0,\"makeup_2\":100,\"eye_color\":0,\"cheeks_2\":0,\"blemishes_1\":255,\"bags_1\":0,\"makeup_3\":255,\"face_md_weight\":50,\"mom\":21,\"blush_3\":0,\"bodyb_2\":100,\"tshirt_1\":23,\"helmet_2\":0,\"chin_1\":0,\"chest_4\":0,\"neckarm_1\":0,\"bags_2\":0,\"chest_1\":255,\"eyebrows_3\":0,\"pants_2\":0,\"bodyb_3\":255,\"sun_2\":100,\"hair_color_1\":0,\"hair_color_2\":0,\"nose_5\":0,\"shoes_2\":0,\"neckarm_2\":0,\"beard_1\":255,\"jaw_1\":0,\"lefthand_1\":-1,\"tshirt_2\":0,\"dad\":0,\"pants_1\":6,\"sex\":0,\"hair_1\":0,\"glasses_2\":0,\"nose_2\":0,\"lipstick_1\":255,\"chest_3\":0,\"jaw_2\":0,\"eyebrows_6\":0,\"arms_2\":0,\"blemishes_2\":100,\"bodyb_4\":100,\"lipstick_2\":100,\"eyebrows_4\":0,\"bproof_2\":0}}]}'),
+(155, 'user_ears', 'steam:1100001121b6bdb', '{\"skin\":{\"ears_2\":0,\"ears_1\":0},\"hasEars\":true}'),
+(156, 'user_glasses', 'steam:1100001121b6bdb', '{\"hasGlasses\":true,\"skin\":{\"glasses_1\":10,\"glasses_2\":0}}'),
+(157, 'user_helmet', 'steam:1100001121b6bdb', '{}'),
+(158, 'user_mask', 'steam:1100001121b6bdb', '{}');
 
 -- --------------------------------------------------------
 
@@ -336,6 +365,13 @@ CREATE TABLE `inventory_glovebox` (
   `owned` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `inventory_glovebox`
+--
+
+INSERT INTO `inventory_glovebox` (`id`, `plate`, `data`, `owned`) VALUES
+(8, '26BOM430', '{}', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -347,6 +383,13 @@ CREATE TABLE `inventory_hotbar` (
   `item` varchar(80) NOT NULL,
   `slot` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inventory_hotbar`
+--
+
+INSERT INTO `inventory_hotbar` (`owner`, `item`, `slot`) VALUES
+('steam:1100001121b6bdb', 'bread', 1);
 
 -- --------------------------------------------------------
 
@@ -408,6 +451,7 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('bandage', 'Bandage', 2, 0, 1),
 ('beer', 'Beer', 1, 0, 1),
 ('blowpipe', 'Blowtorch', 2, 0, 1),
+('book', 'Book', -1, 0, 1),
 ('bread', 'Bread', 1, 0, 1),
 ('cannabis', 'Cannabis', 3, 0, 1),
 ('carokit', 'Body Kit', 3, 0, 1),
@@ -435,6 +479,7 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('grip', 'Grip', 2, 0, 1),
 ('hackerDevice', 'Hacker Device', 10, 0, 1),
 ('hammerwirecutter', 'Hammer And Wire Cutter', 10, 0, 1),
+('ipad', 'iPad', -1, 0, 1),
 ('iron', 'Iron', 1, 0, 1),
 ('joint', 'Joint', 1, 0, 1),
 ('lockpick', 'Lockpick', 10, 0, 1),
@@ -452,6 +497,7 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('plato', 'Meal trays', -1, 0, 1),
 ('pouch', 'Pouch', 1, 0, 1),
 ('raw', 'RAW Rolling Papers', 1, 0, 1),
+('rolex', 'Rolex', -1, 0, 1),
 ('scope', 'Scope', 2, 0, 1),
 ('skin', 'Stock weapon spray', 2, 0, 1),
 ('skin1', 'Dark green weapon spray', 2, 0, 1),
@@ -643,7 +689,8 @@ CREATE TABLE `owned_vehicles` (
   `paidprice` int(11) NOT NULL DEFAULT 0,
   `finance` int(32) NOT NULL DEFAULT 0,
   `repaytime` int(32) NOT NULL DEFAULT 0,
-  `model` varchar(60) NOT NULL
+  `model` varchar(60) NOT NULL,
+  `storedhouse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -955,7 +1002,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`identifier`, `accounts`, `group`, `inventory`, `job`, `job_grade`, `loadout`, `position`, `status`, `skin`, `is_dead`, `last_property`, `firstname`, `lastname`, `dateofbirth`, `sex`, `height`, `phone_number`) VALUES
-('steam:1100001121b6bdb', '{\"money\":0,\"black_money\":0,\"bank\":50600}', 'user', '[]', 'unemployed', 0, '[]', '{\"y\":-1419.1,\"z\":31.0,\"heading\":88.3,\"x\":-232.1}', '[{\"val\":0,\"percent\":0.0,\"name\":\"drunk\"}]', '{\"cheeks_3\":-1,\"helmet_2\":0,\"makeup_1\":255,\"neck_thickness\":0,\"pants_2\":4,\"beard_3\":0,\"chin_4\":0,\"blemishes_1\":255,\"eyebrows_6\":32,\"decals_1\":0,\"torso_2\":0,\"chest_1\":0,\"hair_color_1\":0,\"hair_color_2\":18,\"lipstick_2\":100,\"bodyb_1\":255,\"helmet_1\":-1,\"chest_4\":0,\"lipstick_3\":0,\"blush_3\":0,\"nose_6\":0,\"nose_3\":0,\"lipstick_1\":255,\"beard_2\":60,\"lip_thickness\":0,\"shoes_1\":28,\"complexion_2\":100,\"torso_1\":57,\"glasses_1\":-1,\"makeup_2\":100,\"age_2\":100,\"chin_2\":1,\"sun_2\":100,\"jaw_2\":1,\"face_md_weight\":25,\"eye_squint\":0,\"chest_3\":0,\"cheeks_1\":0,\"blush_2\":100,\"neckarm_1\":0,\"skin_md_weight\":75,\"hair_1\":57,\"hair_2\":0,\"eyebrows_4\":0,\"tshirt_2\":0,\"nose_4\":0,\"complexion_1\":255,\"moles_1\":255,\"blemishes_2\":100,\"moles_2\":100,\"bodyb_4\":100,\"neckarm_2\":0,\"shoes_2\":3,\"dad\":0,\"beard_4\":0,\"makeup_4\":255,\"lefthand_2\":0,\"arms\":4,\"lipstick_4\":0,\"bags_1\":0,\"sex\":0,\"jaw_1\":-50,\"age_1\":255,\"lefthand_1\":-1,\"nose_2\":0,\"eyebrows_2\":100,\"pants_1\":78,\"makeup_3\":255,\"eyebrows_5\":58,\"beard_1\":7,\"righthand_2\":0,\"makeup_type\":0,\"nose_1\":0,\"blush_1\":255,\"mom\":31,\"chin_1\":-21,\"bproof_2\":0,\"chest_2\":50,\"eye_color\":2,\"nose_5\":0,\"bproof_1\":0,\"mask_2\":0,\"eyebrows_3\":0,\"glasses_2\":0,\"righthand_1\":-1,\"tshirt_1\":75,\"decals_2\":0,\"cheeks_2\":0,\"bags_2\":0,\"eyebrows_1\":23,\"bodyb_3\":255,\"chin_3\":-48,\"mask_1\":0,\"arms_2\":0,\"ears_1\":-1,\"ears_2\":0,\"bodyb_2\":100,\"sun_1\":255}', 0, NULL, 'Brad', 'Xu', '01/27/2000', 'm', 75, '845-9133');
+('steam:1100001121b6bdb', '{\"money\":4769994,\"bank\":52150,\"black_money\":0}', 'user', '{\"bread\":1}', 'unemployed', 0, '[]', '{\"x\":941.2,\"heading\":24.3,\"z\":77.0,\"y\":33.8}', '[{\"name\":\"drunk\",\"percent\":0.0,\"val\":0}]', '{\"sex\":0,\"age_2\":100,\"ears_2\":0,\"shoes_1\":75,\"beard_3\":0,\"age_1\":255,\"lip_thickness\":0,\"makeup_3\":255,\"bproof_1\":0,\"lipstick_1\":255,\"makeup_1\":255,\"eyebrows_1\":0,\"bodyb_3\":255,\"arms\":1,\"lefthand_1\":-1,\"bags_2\":0,\"decals_2\":0,\"hair_color_2\":0,\"nose_3\":0,\"glasses_2\":0,\"lefthand_2\":0,\"dad\":0,\"decals_1\":0,\"pants_1\":6,\"sun_1\":255,\"beard_2\":100,\"mask_1\":0,\"jaw_2\":0,\"tshirt_1\":23,\"blush_1\":255,\"makeup_2\":100,\"bodyb_2\":100,\"moles_2\":100,\"nose_5\":0,\"neckarm_1\":0,\"bags_1\":0,\"makeup_type\":0,\"chest_2\":100,\"eyebrows_4\":0,\"hair_color_1\":0,\"neckarm_2\":0,\"tshirt_2\":0,\"blemishes_2\":100,\"blemishes_1\":255,\"hair_1\":0,\"complexion_1\":255,\"torso_1\":7,\"righthand_1\":-1,\"chin_1\":0,\"nose_2\":0,\"mask_2\":0,\"helmet_2\":0,\"eyebrows_2\":100,\"helmet_1\":-1,\"hair_2\":0,\"torso_2\":2,\"chest_4\":0,\"beard_4\":0,\"pants_2\":0,\"complexion_2\":100,\"chest_1\":255,\"cheeks_1\":0,\"glasses_1\":-1,\"chin_3\":0,\"bodyb_1\":255,\"makeup_4\":255,\"arms_2\":0,\"chin_2\":0,\"skin_md_weight\":50,\"righthand_2\":0,\"shoes_2\":0,\"eyebrows_6\":0,\"cheeks_3\":0,\"nose_6\":0,\"eye_color\":0,\"lipstick_4\":0,\"moles_1\":255,\"lipstick_2\":100,\"chest_3\":0,\"nose_1\":0,\"beard_1\":255,\"mom\":21,\"blush_2\":100,\"cheeks_2\":0,\"ears_1\":0,\"eyebrows_3\":0,\"neck_thickness\":0,\"sun_2\":100,\"nose_4\":0,\"face_md_weight\":50,\"eye_squint\":0,\"bodyb_4\":100,\"blush_3\":0,\"lipstick_3\":0,\"jaw_1\":0,\"bproof_2\":0,\"eyebrows_5\":0,\"chin_4\":0}', 0, NULL, 'Brad', 'Xu', '12/31/1999', 'm', 76, '559-9149');
 
 -- --------------------------------------------------------
 
@@ -2507,7 +2554,7 @@ ALTER TABLE `weashops`
 -- AUTO_INCREMENT for table `addon_account_data`
 --
 ALTER TABLE `addon_account_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `addon_inventory_items`
@@ -2531,7 +2578,7 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT for table `datastore_data`
 --
 ALTER TABLE `datastore_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `fine_types`
@@ -2543,7 +2590,7 @@ ALTER TABLE `fine_types`
 -- AUTO_INCREMENT for table `inventory_glovebox`
 --
 ALTER TABLE `inventory_glovebox`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `inventory_trunk`
