@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2021 at 10:59 AM
+-- Generation Time: Apr 03, 2021 at 11:38 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -68,29 +68,6 @@ CREATE TABLE `addon_account_data` (
   `money` int(11) NOT NULL,
   `owner` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `addon_account_data`
---
-
-INSERT INTO `addon_account_data` (`id`, `account_name`, `money`, `owner`) VALUES
-(126, 'society_ambulance', 0, NULL),
-(127, 'society_banker', 0, NULL),
-(128, 'society_cardealer', 0, NULL),
-(129, 'society_mechanic', 0, NULL),
-(130, 'society_police', 0, NULL),
-(131, 'society_police_black_money', 0, NULL),
-(132, 'society_police_money', 0, NULL),
-(133, 'society_realestateagent', 0, NULL),
-(134, 'society_taxi', 0, NULL),
-(135, 'bag_black_money', 0, 'steam:1100001121b6bdb'),
-(136, 'bag_money', 0, 'steam:1100001121b6bdb'),
-(137, 'bank_savings', 0, 'steam:1100001121b6bdb'),
-(138, 'caution', 0, 'steam:1100001121b6bdb'),
-(139, 'locker', 0, 'steam:1100001121b6bdb'),
-(140, 'locker_black', 0, 'steam:1100001121b6bdb'),
-(141, 'locker_cash', 0, 'steam:1100001121b6bdb'),
-(142, 'property_black_money', 0, 'steam:1100001121b6bdb');
 
 -- --------------------------------------------------------
 
@@ -180,6 +157,21 @@ CREATE TABLE `ammunition` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bank_transfer`
+--
+
+CREATE TABLE `bank_transfer` (
+  `id` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `identifier` varchar(50) NOT NULL,
+  `price` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `billing`
 --
 
@@ -235,23 +227,6 @@ CREATE TABLE `datastore_data` (
   `data` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `datastore_data`
---
-
-INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
-(148, 'society_ambulance', NULL, '{}'),
-(149, 'society_mechanic', NULL, '{}'),
-(150, 'society_police', NULL, '{}'),
-(151, 'society_taxi', NULL, '{}'),
-(152, 'bag', 'steam:1100001121b6bdb', '{}'),
-(153, 'locker', 'steam:1100001121b6bdb', '{}'),
-(154, 'property', 'steam:1100001121b6bdb', '{\"dressing\":[{\"skin\":{\"complexion_2\":100,\"cheeks_1\":0,\"decals_1\":0,\"righthand_1\":-1,\"beard_3\":0,\"beard_4\":0,\"lipstick_4\":0,\"eyebrows_1\":0,\"chin_3\":0,\"lipstick_3\":0,\"ears_2\":0,\"lefthand_2\":0,\"righthand_2\":0,\"moles_2\":100,\"chin_4\":0,\"helmet_1\":-1,\"arms\":15,\"makeup_type\":0,\"chin_2\":0,\"neck_thickness\":0,\"shoes_1\":34,\"age_1\":255,\"ears_1\":0,\"complexion_1\":255,\"mask_1\":0,\"blush_2\":100,\"nose_1\":0,\"cheeks_3\":0,\"torso_1\":7,\"glasses_1\":-1,\"blush_1\":255,\"eye_color\":0,\"nose_6\":0,\"bodyb_1\":255,\"lip_thickness\":0,\"nose_4\":0,\"neckarm_1\":0,\"eyebrows_5\":0,\"beard_2\":100,\"eyebrows_2\":100,\"eyebrows_3\":0,\"skin_md_weight\":50,\"decals_2\":0,\"makeup_4\":255,\"blush_3\":0,\"eye_squint\":0,\"chin_1\":0,\"hair_2\":0,\"torso_2\":0,\"chest_2\":100,\"moles_1\":255,\"nose_3\":0,\"makeup_2\":100,\"helmet_2\":0,\"cheeks_2\":0,\"blemishes_1\":255,\"sex\":0,\"bproof_1\":0,\"face_md_weight\":50,\"makeup_3\":255,\"age_2\":100,\"bodyb_2\":100,\"tshirt_1\":23,\"mom\":21,\"makeup_1\":255,\"bags_2\":0,\"nose_2\":0,\"chest_4\":0,\"chest_1\":255,\"mask_2\":0,\"pants_2\":0,\"blemishes_2\":100,\"sun_1\":255,\"hair_color_1\":0,\"hair_color_2\":0,\"nose_5\":0,\"bags_1\":0,\"neckarm_2\":0,\"beard_1\":255,\"shoes_2\":0,\"lefthand_1\":-1,\"glasses_2\":0,\"jaw_1\":0,\"bodyb_3\":255,\"pants_1\":6,\"sun_2\":100,\"eyebrows_4\":0,\"dad\":0,\"lipstick_1\":255,\"chest_3\":0,\"jaw_2\":0,\"tshirt_2\":0,\"arms_2\":0,\"hair_1\":0,\"bodyb_4\":100,\"lipstick_2\":100,\"bproof_2\":0,\"eyebrows_6\":0},\"label\":\"TEST\"},{\"label\":\"TEST\",\"skin\":{\"complexion_2\":100,\"cheeks_1\":0,\"decals_1\":0,\"righthand_1\":-1,\"beard_3\":0,\"beard_4\":0,\"lipstick_4\":0,\"eyebrows_1\":0,\"chin_3\":0,\"lipstick_3\":0,\"ears_2\":0,\"lefthand_2\":0,\"righthand_2\":0,\"moles_2\":100,\"chin_4\":0,\"age_2\":100,\"arms\":1,\"makeup_type\":0,\"chin_2\":0,\"neck_thickness\":0,\"shoes_1\":75,\"age_1\":255,\"ears_1\":0,\"complexion_1\":255,\"mask_1\":0,\"blush_2\":100,\"nose_1\":0,\"cheeks_3\":0,\"torso_1\":7,\"glasses_1\":-1,\"blush_1\":255,\"eyebrows_5\":0,\"nose_6\":0,\"bodyb_1\":255,\"lip_thickness\":0,\"makeup_1\":255,\"nose_4\":0,\"sun_1\":255,\"beard_2\":100,\"eyebrows_2\":100,\"makeup_4\":255,\"mask_2\":0,\"decals_2\":0,\"bproof_1\":0,\"helmet_1\":-1,\"eye_squint\":0,\"skin_md_weight\":50,\"hair_2\":0,\"torso_2\":2,\"chest_2\":100,\"moles_1\":255,\"nose_3\":0,\"makeup_2\":100,\"eye_color\":0,\"cheeks_2\":0,\"blemishes_1\":255,\"bags_1\":0,\"makeup_3\":255,\"face_md_weight\":50,\"mom\":21,\"blush_3\":0,\"bodyb_2\":100,\"tshirt_1\":23,\"helmet_2\":0,\"chin_1\":0,\"chest_4\":0,\"neckarm_1\":0,\"bags_2\":0,\"chest_1\":255,\"eyebrows_3\":0,\"pants_2\":0,\"bodyb_3\":255,\"sun_2\":100,\"hair_color_1\":0,\"hair_color_2\":0,\"nose_5\":0,\"shoes_2\":0,\"neckarm_2\":0,\"beard_1\":255,\"jaw_1\":0,\"lefthand_1\":-1,\"tshirt_2\":0,\"dad\":0,\"pants_1\":6,\"sex\":0,\"hair_1\":0,\"glasses_2\":0,\"nose_2\":0,\"lipstick_1\":255,\"chest_3\":0,\"jaw_2\":0,\"eyebrows_6\":0,\"arms_2\":0,\"blemishes_2\":100,\"bodyb_4\":100,\"lipstick_2\":100,\"eyebrows_4\":0,\"bproof_2\":0}}]}'),
-(155, 'user_ears', 'steam:1100001121b6bdb', '{\"skin\":{\"ears_2\":0,\"ears_1\":0},\"hasEars\":true}'),
-(156, 'user_glasses', 'steam:1100001121b6bdb', '{\"hasGlasses\":true,\"skin\":{\"glasses_1\":10,\"glasses_2\":0}}'),
-(157, 'user_helmet', 'steam:1100001121b6bdb', '{}'),
-(158, 'user_mask', 'steam:1100001121b6bdb', '{}');
-
 -- --------------------------------------------------------
 
 --
@@ -273,13 +248,6 @@ CREATE TABLE `dpkeybinds` (
   `keybind6` varchar(50) DEFAULT 'num9',
   `emote6` varchar(255) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `dpkeybinds`
---
-
-INSERT INTO `dpkeybinds` (`id`, `keybind1`, `emote1`, `keybind2`, `emote2`, `keybind3`, `emote3`, `keybind4`, `emote4`, `keybind5`, `emote5`, `keybind6`, `emote6`) VALUES
-('steam:1100001121b6bdb', 'num4', '', 'num5', '', 'num6', '', 'num7', '', 'num8', '', 'num9', '');
 
 -- --------------------------------------------------------
 
@@ -355,6 +323,50 @@ INSERT INTO `fine_types` (`id`, `label`, `amount`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `insto_accounts`
+--
+
+CREATE TABLE `insto_accounts` (
+  `id` int(11) NOT NULL,
+  `forename` varchar(50) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
+  `surname` varchar(50) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
+  `username` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '0',
+  `password` varchar(50) COLLATE utf8mb4_bin NOT NULL DEFAULT '0',
+  `avatar_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `insto_instas`
+--
+
+CREATE TABLE `insto_instas` (
+  `id` int(11) NOT NULL,
+  `authorId` int(11) NOT NULL,
+  `realUser` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filters` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `likes` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `insto_likes`
+--
+
+CREATE TABLE `insto_likes` (
+  `id` int(11) NOT NULL,
+  `authorId` int(11) DEFAULT NULL,
+  `inapId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `inventory_glovebox`
 --
 
@@ -365,13 +377,6 @@ CREATE TABLE `inventory_glovebox` (
   `owned` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `inventory_glovebox`
---
-
-INSERT INTO `inventory_glovebox` (`id`, `plate`, `data`, `owned`) VALUES
-(8, '26BOM430', '{}', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -379,17 +384,11 @@ INSERT INTO `inventory_glovebox` (`id`, `plate`, `data`, `owned`) VALUES
 --
 
 CREATE TABLE `inventory_hotbar` (
+  `id` int(11) NOT NULL,
   `owner` varchar(80) NOT NULL,
   `item` varchar(80) NOT NULL,
   `slot` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `inventory_hotbar`
---
-
-INSERT INTO `inventory_hotbar` (`owner`, `item`, `slot`) VALUES
-('steam:1100001121b6bdb', 'bread', 1);
 
 -- --------------------------------------------------------
 
@@ -435,70 +434,187 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('accesscard', 'Access Card', 10, 0, 1),
+('acetone', '丙酮', 500, 0, 1),
 ('alive_chicken', 'Living chicken', 1, 0, 1),
-('ammunition_fireextinguisher', 'Fire Extinguisher Fuel', 10, 0, 1),
-('ammunition_pistol', 'Pistol Ammo', 10, 0, 1),
-('ammunition_pistol_large', 'Pistol Ammo Large', 10, 0, 1),
-('ammunition_rifle', 'Rifle Ammo', 10, 0, 1),
-('ammunition_rifle_large', 'Rifle Ammo Large', 10, 0, 1),
-('ammunition_shotgun', 'Shotgun Shells', 10, 0, 1),
-('ammunition_shotgun_large', 'Shotgun Shells Large', 10, 0, 1),
-('ammunition_smg', 'SMG Ammo', 10, 0, 1),
-('ammunition_smg_large', 'SMG Ammo Large', 10, 0, 1),
-('ammunition_snp', 'Sniper Ammo', 10, 0, 1),
-('ammunition_snp_large', 'Sniper Ammo Large', 10, 0, 1),
+('ammunition_fireextinguisher', '灭火器', 2000, 0, 1),
+('ammunition_pistol', '手枪弹药', 300, 0, 1),
+('ammunition_pistol_large', '大量手枪弹药', 600, 0, 1),
+('ammunition_rifle', '步枪弹药', 500, 0, 1),
+('ammunition_rifle_large', '大量步枪弹药', 1000, 0, 1),
+('ammunition_shotgun', '霰弹枪弹药', 500, 0, 1),
+('ammunition_shotgun_large', '大量霰弹枪弹药', 1000, 0, 1),
+('ammunition_smg', '冲锋枪弹药', 300, 0, 1),
+('ammunition_smg_large', '大量冲锋枪弹药', 600, 0, 1),
+('ammunition_snp', '狙击枪弹药', 500, 0, 1),
+('ammunition_snp_large', '大量狙击枪弹药', 1000, 0, 1),
+('appleempanada', '焦糖苹果馅饼', 300, 0, 1),
+('applejuice', '苹果汁', 500, 0, 1),
+('armor', '防弹衣', 3200, 0, 1),
+('aspirin', '阿司匹林', 1, 0, 1),
+('baconcheeseburger', '培根芝士堡', 300, 0, 1),
+('baconking', '培根牛肉国王堡', 300, 0, 1),
+('bacon_clubhouse_burger', '培根牛堡', 300, 0, 1),
 ('bag', 'Bag', 1, 0, 1),
-('bandage', 'Bandage', 2, 0, 1),
-('beer', 'Beer', 1, 0, 1),
-('blowpipe', 'Blowtorch', 2, 0, 1),
+('bag100g', '密封塑料袋(100克)', 100, 0, 1),
+('bag1g', '密封塑料袋(1克)', 1, 0, 1),
+('bag50g', '密封塑料袋(50克)', 50, 0, 1),
+('bag5g', '密封塑料袋(5克)', 5, 0, 1),
+('bagdogfoor', '一包狗粮', 800, 0, 1),
+('bag_bread', '一袋面包', 500, 0, 1),
+('bag_water', '一箱矿泉水', 14400, 0, 1),
+('bandage', '绷带', 20, 0, 1),
+('beefyfritosburrito', '牛肉墨西哥卷饼', 300, 0, 1),
+('beefyminiquesadilla', '牛肉迷你玉米饼', 300, 0, 1),
+('beer', '啤酒', 600, 0, 1),
+('beer2', '一提啤酒', 3600, 0, 1),
+('beijingbeef', '北京牛肉', 500, 0, 1),
+('bigmac', '巨无霸', 300, 0, 1),
+('binocular', '双筒望远镜', 100, 0, 1),
+('bkshakes', '汉堡王沙冰', 500, 0, 1),
+('blowpipe', '喷灯', 2000, 0, 1),
 ('book', 'Book', -1, 0, 1),
-('bread', 'Bread', 1, 0, 1),
-('cannabis', 'Cannabis', 3, 0, 1),
-('carokit', 'Body Kit', 3, 0, 1),
-('carotool', 'Tools', 2, 0, 1),
+('boxcig', '一包香烟', 100, 0, 1),
+('bread', '面包', 80, 0, 1),
+('broccolibeef', '西兰花牛肉', 500, 0, 1),
+('cannabis', '大麻', 500, 0, 1),
+('carokit', '车身套件', 2000, 0, 1),
+('carotool', '工具', 2000, 0, 1),
 ('carparts', 'Car Parts', -1, 0, 1),
+('cheeseburgers', '吉士堡', 300, 0, 1),
+('cheeserollup', '芝士卷', 300, 0, 1),
+('cheesybean_riceburrito', '芝士豆米煎饼', 300, 0, 1),
+('chickenclubsalad', '鸡肉小沙拉', 300, 0, 1),
+('chickenminiquesadilla', '鸡丝迷你玉米饼', 300, 0, 1),
+('chickennugget', '麦乐鸡', 300, 0, 1),
+('chicken_nuggets', '嫩香鸡块', 300, 0, 1),
+('chips', '薯片', 300, 0, 1),
+('chocolate', 'M&M巧克力豆', 80, 0, 1),
+('chomein', '炒面', 400, 0, 1),
+('chopsuey', '李鸿章杂碎', 500, 0, 1),
+('cigarette', '香烟', 0, 0, 1),
+('cigarette2', '小雪茄', 10, 0, 1),
+('cinnamontwists', '肉桂卷', 300, 0, 1),
+('clip', '弹药箱', 5000, 0, 1),
 ('clothe', 'Cloth', 1, 0, 1),
-('coke', 'Coca leaf', 1, 0, 1),
+('coco', '可卡因', 500, 0, 1),
+('coco_leaf', '可卡因叶', 500, 0, 1),
+('coffee', '咖啡', 250, 0, 1),
+('coke', '可乐', 300, 0, 1),
 ('coke_pooch', 'Coke', 1, 0, 1),
-('copper', 'Copper', 1, 0, 1),
+('copper', '铜', 500, 0, 1),
+('corn_chips', '玉米片', 150, 0, 1),
+('crispy_chicken_deluxe', '麦麦脆汁鸡', 300, 0, 1),
+('cuffs', '手铐', 50, 0, 1),
+('cuff_keys', '手铐钥匙', 1, 0, 1),
 ('cutted_wood', 'Cut wood', 1, 0, 1),
-('diamond', 'Diamond', 1, 0, 1),
-('drill', 'Drill', 15, 0, 1),
+('diamond', '钻石', 500, 0, 1),
+('dogfood', '狗粮', 80, 0, 1),
+('drill', '钻头', 500, 0, 1),
+('drpeppervanilla', '香草味胡椒博士', 500, 0, 1),
 ('drummag', 'Drum Magazine', 2, 0, 1),
+('eggplanttofu', '茄子豆腐', 300, 0, 1),
+('egg_mcmuffin', '麦满分', 300, 0, 1),
+('emerald', '翡翠', 500, 0, 1),
 ('essence', 'Gas', 1, 0, 1),
 ('fabric', 'Fabric', 1, 0, 1),
+('fanta', '芬达', 300, 0, 1),
+('filet_o_fish', '麦香鱼', 300, 0, 1),
+('firecrackerchickenbreast', '爆炒鸡胸', 500, 0, 1),
+('firecrackershrimp', '黄金炸虾卷', 500, 0, 1),
+('firstaid', '急救箱', 900, 0, 1),
 ('fish', 'Fish', 1, 0, 1),
-('fixkit', 'Repair Kit', 3, 0, 1),
+('fiveflavorshrimp', '五香虾', 500, 0, 1),
+('fixkit', '维修工具', 3000, 0, 1),
 ('fixtool', 'Repair Tools', 2, 0, 1),
 ('flashlight', 'Flashlight', 2, 0, 1),
+('fortunecookies', '幸运饼干', 10, 0, 1),
+('fountain', '喷泉烟火', 100, 0, 1),
+('french_fries', '薯条', 80, 0, 1),
+('friedrice', '炒饭', 400, 0, 1),
+('gadget_parachute', '降落伞', 2000, 0, 1),
 ('gazbottle', 'Gas Bottle', 2, 0, 1),
-('gold', 'Gold', 1, 0, 1),
-('goldbar', 'Gold Bar', 100, 0, 1),
+('generaltso_chicken', '左宗棠鸡', 500, 0, 1),
+('gold', '黄金', 500, 0, 1),
+('goldbar', '金条', 500, 0, 1),
 ('goldnecklace', 'Gold Necklace', 150, 0, 1),
 ('goldwatch', 'Gold Watch', 200, 0, 1),
+('gps', '全球定位系统', 100, 0, 1),
+('grilledteriyakichicken', '照烧鸡肉', 500, 0, 1),
 ('grip', 'Grip', 2, 0, 1),
 ('hackerDevice', 'Hacker Device', 10, 0, 1),
 ('hammerwirecutter', 'Hammer And Wire Cutter', 10, 0, 1),
+('hifi', '音响系统', 2000, 0, 1),
+('highgradefert', '肥料(高)', 500, 0, 1),
+('honeysesamechickenbreast', '蜂蜜芝麻鸡胸肉', 500, 0, 1),
+('honeywalnutshrimp', '蜂蜜核桃虾', 500, 0, 1),
+('hotchocolate', '热可可', 300, 0, 1),
+('hot_dogs', '热狗', 50, 0, 1),
+('icedmocha', '冰摩卡', 200, 0, 1),
+('impossiblewhopper', '人造肉皇堡', 300, 0, 1),
 ('ipad', 'iPad', -1, 0, 1),
-('iron', 'Iron', 1, 0, 1),
-('joint', 'Joint', 1, 0, 1),
-('lockpick', 'Lockpick', 10, 0, 1),
+('iron', '铁', 500, 0, 1),
+('jelly_beans', '彩虹糖', 300, 0, 1),
+('jewels', '一袋珠宝', 1000, 0, 1),
+('joint', '大块的生肉', 1000, 0, 1),
+('kungpaochicken', '宫保鸡丁', 500, 0, 1),
+('largefries', '大薯条', 300, 0, 1),
+('lighter', '火机', 100, 0, 1),
+('lithium', '锂电池', 10, 0, 1),
+('lockpick', '撬锁工具', 20, 0, 1),
+('lokalizator', '全球定位系统', 1, 0, 1),
+('lowgradefert', '肥料(低)', 500, 0, 1),
 ('mag', 'Magazine', 2, 0, 1),
-('marijuana', 'Marijuana', 2, 0, 1),
-('medikit', 'Medikit', 2, 0, 1),
-('meth', 'Chemicals', 1, 0, 1),
+('marijuana', '大麻', 500, 0, 1),
+('mccafe_shakes', '奶昔', 500, 0, 1),
+('meat', '生肉', 500, 0, 1),
+('medikit', '医疗箱', 1000, 0, 1),
+('medkit', '医疗包', 500, 0, 1),
+('meth', '冰毒', 500, 0, 1),
+('methlab', '便携式毒品检测仪', 500, 0, 1),
 ('meth_pooch', 'Meth', 1, 0, 1),
+('microchip', '芯片', 1, 0, 1),
+('milk', '牛奶', 250, 0, 1),
+('milktea', '奶茶', 250, 0, 1),
+('morphine', '吗啡', 1, 0, 1),
+('mtn_dew', '百事激浪', 500, 0, 1),
+('net_cracker', '黑客破解工具', 300, 0, 1),
+('nuts', '坚果', 100, 0, 1),
+('onionrings', '超值洋葱圈', 300, 0, 1),
 ('opium', 'Opiate', 1, 0, 1),
 ('opium_pooch', 'Opium', 1, 0, 1),
+('orangechicken', '陈皮鸡', 500, 0, 1),
+('orangejuice', '橙汁', 500, 0, 1),
+('orange_juice', '橙汁', 500, 0, 1),
+('oreo_mcflurry', '奥利奥麦旋风', 150, 0, 1),
+('originalchickensandwich', '原味鸡肉堡', 300, 0, 1),
+('oxygen_mask', '氧气面罩', 500, 0, 1),
 ('packaged_chicken', 'Chicken fillet', 1, 0, 1),
 ('packaged_plank', 'Packaged wood', 1, 0, 1),
+('pdbadge', '警徽', 10, 0, 1),
+('pendrive', '笔式破解工具', 200, 0, 1),
 ('petrol', 'Oil', 1, 0, 1),
 ('petrol_raffin', 'Processed oil', 1, 0, 1),
+('phone', '手机', 200, 0, 1),
+('pies', '派', 100, 0, 1),
+('pistachio', '开心果', 100, 0, 1),
+('plantpot', '盆栽植物', 100, 0, 1),
 ('plato', 'Meal trays', -1, 0, 1),
+('potato', '土豆', 10, 0, 1),
 ('pouch', 'Pouch', 1, 0, 1),
+('premium_mcwrap', '美味鸡肉烙饼', 300, 0, 1),
+('radio', '对讲机', 100, 0, 1),
 ('raw', 'RAW Rolling Papers', 1, 0, 1),
-('rolex', 'Rolex', -1, 0, 1),
+('red_bull', '红牛', 300, 0, 1),
+('rolex', '劳力士', 10, 0, 1),
+('rollingpaper', '滚纸', 1, 0, 1),
+('rum', '朗姆', 750, 0, 1),
+('sandwich', '三明治', 80, 0, 1),
 ('scope', 'Scope', 2, 0, 1),
+('scubagear', '水下呼吸器', 1000, 0, 1),
+('shanghaiangussteak', '上海安格斯牛排', 500, 0, 1),
+('shotburst', '突发焰火', 100, 0, 1),
+('sichuanhotchicken', '四川辣子鸡', 500, 0, 1),
+('sim', 'Sim卡', 1, 0, 1),
 ('skin', 'Stock weapon spray', 2, 0, 1),
 ('skin1', 'Dark green weapon spray', 2, 0, 1),
 ('skin2', 'Gold weapon spray', 2, 0, 1),
@@ -508,31 +624,320 @@ INSERT INTO `items` (`name`, `label`, `weight`, `rare`, `can_remove`) VALUES
 ('skin6', 'Orange and black weapon spray', 2, 0, 1),
 ('skin7', 'Light grey weapon spray', 2, 0, 1),
 ('slaughtered_chicken', 'Slaughtered chicken', 1, 0, 1),
-('stone', 'Stone', 1, 0, 1),
+('smoothies', '思慕雪', 300, 0, 1),
+('snickers', '士力架', 30, 0, 1),
+('soda', '苏打水', 300, 0, 1),
+('softdrink', '软饮料', 500, 0, 1),
+('spicypotatosofttaco', '香辣土豆玉米饼', 300, 0, 1),
+('spicytostada', '辣味炸玉米粉圆饼', 300, 0, 1),
+('starburst', '星爆烟花', 100, 0, 1),
+('starburstcherry', '星爆樱桃', 500, 0, 1),
+('starburststrawberry', '星爆草莓', 500, 0, 1),
+('steel', '钢', 500, 0, 1),
+('stone', '石头', 500, 0, 1),
+('sundae', '圣代', 150, 0, 1),
+('sundaepie', '好时圣代派', 200, 0, 1),
 ('suppressor', 'Suppressor', 2, 0, 1),
+('sweetfirechickenbreast', '甜烧鸡胸', 500, 0, 1),
+('tequila', '龙舌兰酒', 750, 0, 1),
+('texasdoublewhopper', '双层皇堡', 300, 0, 1),
+('thermite', '铝热剂炸弹', 500, 0, 1),
 ('ticket', 'Jail Tickets', -1, 0, 1),
+('trailburst', '爆竹', 100, 0, 1),
 ('trapphone', 'Trap Phone', 1, 0, 1),
+('triplelayernachos', '三重美味玉米片', 300, 0, 1),
+('tylenol', '感冒药', 1, 0, 1),
+('up_axon_001', 'body3下绕1', 500, 0, 1),
+('up_axon_002', 'body3上绕2', 500, 0, 1),
+('up_axon_003', 'body2下绕3', 500, 0, 1),
+('up_axon_004', 'body3记录仪4', 500, 0, 1),
+('up_axon_005', 'body2记录仪5', 500, 0, 1),
+('up_axon_006', 'body2下绕6', 500, 0, 1),
+('up_axon_007', '下绕肩咪7', 500, 0, 1),
+('up_axon_008', 'body2上饶8', 500, 0, 1),
+('up_axon_009', 'body3下饶9', 500, 0, 1),
+('up_axon_010', '下饶手咪10', 500, 0, 1),
+('up_badge_001', '市警警徽1', 200, 0, 1),
+('up_badge_002', '县警警徽2', 200, 0, 1),
+('up_badge_003', '鱼猎局警徽3', 200, 0, 1),
+('up_badge_004', '州警警徽4', 200, 0, 1),
+('up_badge_005', '消防员徽章5', 200, 0, 1),
+('up_badge_006', '学员警徽6', 200, 0, 1),
+('up_belt_001', '5.56弹匣腰带1', 3000, 0, 1),
+('up_belt_002', '斜9mm腰带2', 3000, 0, 1),
+('up_belt_003', '皮质腰带3', 3000, 0, 1),
+('up_belt_004', '记录仪腰带4', 3000, 0, 1),
+('up_belt_005', '蓝手机套腰带5', 3000, 0, 1),
+('up_belt_006', '5.56弹匣腰带6', 3000, 0, 1),
+('up_belt_007', '斜9mm腰带7', 3000, 0, 1),
+('up_belt_008', '黑手机套腰带8', 3000, 0, 1),
+('up_belt_009', '教官腰带9', 3000, 0, 1),
+('up_belt_010', '新款腰带10', 3000, 0, 1),
+('up_belt_011', '前置铐腰带11', 3000, 0, 1),
+('up_belt_012', 'FR腰带12', 3000, 0, 1),
+('up_belt_013', '无泰瑟腰带13', 3000, 0, 1),
+('up_belt_014', '新款手机腰带14', 3000, 0, 1),
+('up_belt_015', '新款腰带15', 3000, 0, 1),
+('up_belt_016', '斜置泰瑟腰带16', 3000, 0, 1),
+('up_belt_017', '腰间对讲机17', 3000, 0, 1),
+('up_belt_018', '附包尼龙腰带18', 3000, 0, 1),
+('up_belt_019', '大泰瑟腰带19', 3000, 0, 1),
+('up_belt_020', '斜置泰瑟腰带20', 3000, 0, 1),
+('up_belt_021', '三联9mm腰带21', 3000, 0, 1),
+('up_belt_022', '右斜9mm腰带22', 3000, 0, 1),
+('up_belt_023', '横置装备腰带23', 3000, 0, 1),
+('up_belt_024', '战术腰带24', 3000, 0, 1),
+('up_belt_025', '战术腰带25', 3000, 0, 1),
+('up_belt_026', '市空中腰带26', 3000, 0, 1),
+('up_belt_027', '县空中腰带27', 3000, 0, 1),
+('up_belt_028', '大泰瑟腰带28', 3000, 0, 1),
+('up_belt_029', '战术腰带29', 3000, 0, 1),
+('up_belt_030', '轻量化腰带31', 3000, 0, 1),
+('up_belt_031', '腰间对讲机32', 3000, 0, 1),
+('up_belt_032', '横9mm腰带33', 3000, 0, 1),
+('up_belt_033', '纯尼龙腰带34', 3000, 0, 1),
+('up_belt_034', '纯尼龙腰带35', 3000, 0, 1),
+('up_belt_035', '前置拷腰带36', 3000, 0, 1),
+('up_belt_036', '学员腰带37', 3000, 0, 1),
+('up_belt_037', '皮质腰带38', 3000, 0, 1),
+('up_belt_038', '皮质腰带39', 3000, 0, 1),
+('up_belt_039', '黑手机套腰带40', 3000, 0, 1),
+('up_belt_040', '蓝手机套腰带41', 3000, 0, 1),
+('up_belt_041', '长泰瑟腰带42', 3000, 0, 1),
+('up_belt_042', 'T字棍皮腰带43', 3000, 0, 1),
+('up_belt_043', '皮制腰带44', 3000, 0, 1),
+('up_belt_044', '皮制腰带45', 3000, 0, 1),
+('up_belt_045', '皮制腰带47', 3000, 0, 1),
+('up_belt_046', '无泰瑟腰带48', 3000, 0, 1),
+('up_belt_047', '右置9mm腰带49', 3000, 0, 1),
+('up_belt_048', '腰间对讲机50', 3000, 0, 1),
+('up_belt_049', '对讲机加手咪51', 3000, 0, 1),
+('up_belt_050', '皮制腰带52', 3000, 0, 1),
+('up_hat_001', '州警大盘帽1', 50, 0, 1),
+('up_hat_002', '州警骑警盔2', 50, 0, 1),
+('up_hat_003', '市警骑警盔3', 50, 0, 1),
+('up_hat_004', '县警抓绒帽4', 50, 0, 1),
+('up_hat_005', '反光抓绒帽5', 50, 0, 1),
+('up_hat_006', '市警抓绒帽6', 50, 0, 1),
+('up_hat_007', '市警抓绒帽7', 50, 0, 1),
+('up_hat_008', '市反戴棒球帽8', 50, 0, 1),
+('up_hat_009', 'ESU反棒球帽9', 50, 0, 1),
+('up_hat_010', '县反棒球帽10', 50, 0, 1),
+('up_hat_011', '州警蓝小盘帽11', 50, 0, 1),
+('up_hat_012', '市警棒球帽12', 50, 0, 1),
+('up_hat_013', '县警棒球帽13', 50, 0, 1),
+('up_hat_014', '州警棒球帽14', 50, 0, 1),
+('up_hat_015', '学员棒球帽15', 50, 0, 1),
+('up_hat_016', 'ESU棒球帽16', 50, 0, 1),
+('up_hat_017', '鱼猎局棒球帽17', 50, 0, 1),
+('up_hat_018', '县警棒球帽18', 50, 0, 1),
+('up_hat_019', 'ESU棒球帽19', 50, 0, 1),
+('up_hat_020', '市警旧棒球帽20', 50, 0, 1),
+('up_hat_021', '县警盘帽21', 50, 0, 1),
+('up_hat_022', '县警牛仔帽22', 50, 0, 1),
+('up_hat_023', 'ESU战术盔23', 50, 0, 1),
+('up_hat_024', '礼帽24', 50, 0, 1),
+('up_hat_025', '州警盘帽25', 50, 0, 1),
+('up_hat_026', '自行车盔26', 50, 0, 1),
+('up_hat_027', '市轻量战术盔27', 1500, 0, 1),
+('up_hat_028', '县轻量战术盔28', 1500, 0, 1),
+('up_hat_029', '教官盘帽29', 50, 0, 1),
+('up_hat_030', 'ESU战术盔30', 1500, 0, 1),
+('up_hat_031', 'ESU战术盔31', 1500, 0, 1),
+('up_hat_032', '市警飞行盔32', 1500, 0, 1),
+('up_hat_033', '县警飞行盔33', 1500, 0, 1),
+('up_hat_034', '巡逻战术盔34', 1500, 0, 1),
+('up_hat_035', 'FR头盔35', 1500, 0, 1),
+('up_hat_036', 'EMS防护盔36', 1500, 0, 1),
+('up_hat_037', '防暴头盔37', 1500, 0, 1),
+('up_holster_1', '腰间枪套1', 500, 0, 1),
+('up_holster_10', '腰间快拔枪套10', 500, 0, 1),
+('up_holster_2', '腿部枪套2', 500, 0, 1),
+('up_holster_3', '皮制腰间枪套3', 500, 0, 1),
+('up_holster_4', '腰间枪套4', 500, 0, 1),
+('up_holster_5', '腰间偏下枪套5', 500, 0, 1),
+('up_holster_6', '腰间枪套6', 500, 0, 1),
+('up_holster_7', '腰间快拔枪套7', 500, 0, 1),
+('up_holster_8', '腿部枪套8', 500, 0, 1),
+('up_holster_9', '腿部泰瑟枪套9', 500, 0, 1),
+('up_mask_001', '防毒面具1', 200, 0, 1),
+('up_mask_002', '市警口罩2', 200, 0, 1),
+('up_mask_003', '州警口罩3', 200, 0, 1),
+('up_mask_004', '县警口罩4', 200, 0, 1),
+('up_mask_005', '纯黑口罩5', 200, 0, 1),
+('up_mask_006', '纯白口罩6', 200, 0, 1),
+('up_mask_007', '医用蓝口罩7', 200, 0, 1),
+('up_mask_008', '国旗口罩8', 200, 0, 1),
+('up_mask_009', '医用蓝口罩9', 200, 0, 1),
+('up_mask_010', '市警口罩10', 200, 0, 1),
+('up_mask_011', '半脸面罩11', 200, 0, 1),
+('up_vest_001', '电台版JPC背心1', 5000, 0, 1),
+('up_vest_002', '电台版JPC县警背心2', 5000, 0, 1),
+('up_vest_003', '电台版JPC州警背心3', 5000, 0, 1),
+('up_vest_004', '电台版JPC州警彩背心4', 5000, 0, 1),
+('up_vest_005', '电台版JPC县警彩背心5', 5000, 0, 1),
+('up_vest_006', '无电台JPC市警背心6', 5000, 0, 1),
+('up_vest_007', '无电台JPC县警背心7', 5000, 0, 1),
+('up_vest_008', '无电台JPC州警背心8', 5000, 0, 1),
+('up_vest_009', '无电台JPC州警彩背心9', 5000, 0, 1),
+('up_vest_010', '无电台JPC县警彩背心10', 5000, 0, 1),
+('up_vest_011', '镇暴背心11', 5000, 0, 1),
+('up_vest_012', '6094轻量市警背心12', 5000, 0, 1),
+('up_vest_013', '6094轻量县警背心13', 5000, 0, 1),
+('up_vest_014', '6094轻量州警背心14', 5000, 0, 1),
+('up_vest_015', 'ESU轻量背心15', 5000, 0, 1),
+('up_vest_016', '县警轻量背心16', 5000, 0, 1),
+('up_vest_017', '市警轻量背心17', 5000, 0, 1),
+('up_vest_018', '镇暴轻量背心18', 5000, 0, 1),
+('up_vest_019', '学员轻量背心19', 5000, 0, 1),
+('up_vest_020', '市警重型巡逻背心20', 5000, 0, 1),
+('up_vest_021', '县警重型巡逻背心21', 5000, 0, 1),
+('up_vest_022', '州警重型巡逻背心22', 5000, 0, 1),
+('up_vest_023', 'ESU重型背心23', 5000, 0, 1),
+('up_vest_024', '市警重型巡逻背心24', 5000, 0, 1),
+('up_vest_025', '县警重型巡逻背心25', 5000, 0, 1),
+('up_vest_026', '州警重型巡逻背心26', 5000, 0, 1),
+('up_vest_027', '县警重型巡逻彩背心27', 5000, 0, 1),
+('up_vest_028', '市警反光背心28', 5000, 0, 1),
+('up_vest_029', '州警反光背心29', 5000, 0, 1),
+('up_vest_030', '县警反光背心30', 5000, 0, 1),
+('up_vest_031', '工作人员背心31', 5000, 0, 1),
+('up_vest_032', '重型JPC州警背心32', 5000, 0, 1),
+('up_vest_033', '重型JPC市警背心33', 5000, 0, 1),
+('up_vest_034', '重型JPC县警背心34', 5000, 0, 1),
+('up_vest_035', '重型JPC县警彩背心35', 5000, 0, 1),
+('up_vest_036', 'VICE市警背心36', 5000, 0, 1),
+('up_vest_037', 'VICE市警背心37', 5000, 0, 1),
+('up_vest_038', 'VICE市警彩背心38', 5000, 0, 1),
+('up_vest_039', 'VICE市警背心39', 5000, 0, 1),
+('up_vest_040', 'VICE市警背心40', 5000, 0, 1),
+('up_vest_041', '重型6094州警背心41', 5000, 0, 1),
+('up_vest_042', '重型6094州警背心42', 5000, 0, 1),
+('up_vest_043', '重型6094县警背心43', 5000, 0, 1),
+('up_vest_044', '重型6094县警背心44', 5000, 0, 1),
+('up_vest_045', 'ESU重型背心2 45', 5000, 0, 1),
+('up_vest_046', 'SAHP重型背心46', 5000, 0, 1),
+('up_vest_047', '市警重型背心47', 5000, 0, 1),
+('up_vest_048', '市警软质背心48', 5000, 0, 1),
+('up_vest_049', '县警软质彩背心49', 5000, 0, 1),
+('up_vest_050', '县警软质绿背心50', 5000, 0, 1),
+('up_vest_051', 'VICE软质背心51', 5000, 0, 1),
+('up_vest_052', 'SAHP软质背心52', 5000, 0, 1),
+('up_vest_053', '市警重型背心2 53', 5000, 0, 1),
+('up_vest_054', '县警重型背心2 54', 5000, 0, 1),
+('up_vest_055', '州警重型背心2 55', 5000, 0, 1),
+('up_vest_056', '市警重型背心3 56', 5000, 0, 1),
+('up_vest_057', '县警重型背心3 57', 5000, 0, 1),
+('up_vest_058', '州警重型背心3 58', 5000, 0, 1),
+('up_vest_059', '州警重型背心3 59', 5000, 0, 1),
+('up_vest_060', '市警重型攻坚背心60', 5000, 0, 1),
+('up_vest_061', '县警重型攻坚背心61', 5000, 0, 1),
+('up_vest_062', '州警重型攻坚背心62', 5000, 0, 1),
+('up_vest_063', '市警重型背心4 63', 5000, 0, 1),
+('up_vest_064', '县警重型背心4 64', 5000, 0, 1),
+('up_vest_065', '州警重型背心4 65', 5000, 0, 1),
+('up_vest_066', '市警巡逻背心66', 5000, 0, 1),
+('up_vest_067', '州警巡逻背心67', 5000, 0, 1),
+('up_vest_068', 'ESU重型背心68', 5000, 0, 1),
+('up_vest_069', 'VICE UNIT背心69', 5000, 0, 1),
+('up_vest_070', '县警绿重型背心70', 5000, 0, 1),
+('up_vest_071', 'ESU重型攻坚背心71', 5000, 0, 1),
+('up_vest_072', '保安背心72', 5000, 0, 1),
+('valuefries', '超值大薯条', 300, 0, 1),
+('veggiespringroll', '蔬菜春卷', 300, 0, 1),
+('vodka', '威士忌', 750, 0, 1),
 ('washed_stone', 'Washed stone', 1, 0, 1),
-('water', 'Water', 1, 0, 1),
-('WEAPON_ADVANCEDRIFLE', 'Advanced Rifle', 1, 0, 1),
-('WEAPON_APPISTOL', 'AP Pistol', 1, 0, 1),
-('WEAPON_ASSAULTRIFLE', 'Assault Rifle', 1, 0, 1),
-('WEAPON_ASSAULTSHOTGUN', 'Assault Shotgun', 1, 0, 1),
-('WEAPON_ASSAULTSMG', 'Assault SMG', 1, 0, 1),
-('WEAPON_AUTOSHOTGUN', 'Auto Shotgun', 1, 0, 1),
-('WEAPON_BAT', 'Baseball Bat', 1, 0, 1),
-('WEAPON_CARBINERIFLE', 'Carbine Rifle', 1, 0, 1),
-('WEAPON_COMBATPISTOL', 'Combat Pistol', 1, 0, 1),
-('WEAPON_FLASHLIGHT', 'Flashlight', 1, 0, 1),
-('WEAPON_KNIFE', 'Knife', 100, 0, 1),
-('WEAPON_PISTOL', 'Pistol', 1, 0, 1),
-('WEAPON_PUMPSHOTGUN', 'Pump Shotgun', 1, 0, 1),
-('WEAPON_SMG', 'SMG', 1, 0, 1),
-('WEAPON_STUNGUN', 'Taser', 100, 0, 1),
-('weed', 'Weed', 1, 0, 1),
+('water', '矿泉水', 600, 0, 1),
+('weapon_advancedrifle', '塔沃尔TAR-21自动步枪', 3500, 0, 1),
+('weapon_appistol', '格洛克手枪3', 1000, 0, 1),
+('weapon_assaultrifle', 'AK47自动步枪', 4600, 0, 1),
+('weapon_assaultrifle_mk2', 'AK升级型自动步枪', 4000, 0, 1),
+('weapon_assaultshotgun', 'AA-12霰弹枪', 6000, 0, 1),
+('weapon_assaultsmg', 'P90冲锋枪', 3200, 0, 1),
+('weapon_autoshotgun', 'Armsel-Striker霰弹枪', 8500, 0, 1),
+('weapon_ball', '棒球', 100, 0, 1),
+('weapon_bat', '棒球棍', 900, 0, 1),
+('weapon_battleaxe', '战斗手斧', 3000, 0, 1),
+('weapon_bottle', '碎酒瓶', 100, 0, 1),
+('weapon_bullpuprifle', 'QBZ97自动步枪', 3500, 0, 1),
+('weapon_bullpuprifle_mk2', 'QBZ97升级型自动步枪', 3400, 0, 1),
+('weapon_bullpupshotgun', 'Kel-Tec-KSG霰弹枪', 8500, 0, 1),
+('weapon_bzgas', '催泪瓦斯', 250, 0, 1),
+('weapon_carbinerifle', 'AR自动步枪', 4400, 0, 1),
+('weapon_carbinerifle_mk2', 'HK416自动步枪', 3020, 0, 1),
+('weapon_ceramicpistol', '工程塑料手枪', 500, 0, 1),
+('weapon_combatmg', 'M249轻机枪', 10700, 0, 1),
+('weapon_combatmg_mk2', 'M249升级型轻机枪', 10900, 0, 1),
+('weapon_combatpdw', '消音冲锋枪', 3000, 0, 1),
+('weapon_combatpistol', '格洛克手枪', 900, 0, 1),
+('weapon_compactrifle', 'AK（锯短型）自动步枪', 3000, 0, 1),
+('weapon_crowbar', '撬棍', 8000, 0, 1),
+('weapon_dagger', '军礼刀', 400, 0, 1),
+('weapon_dbshotgun', '双管猎枪', 2000, 0, 1),
+('weapon_doubleaction', '转轮手枪', 1300, 0, 1),
+('weapon_fireextinguisher', '灭火器', 2000, 0, 1),
+('weapon_firework', '烟花发射器', 12000, 0, 1),
+('weapon_flare', '信号弹', 200, 0, 1),
+('weapon_flaregun', '信号枪', 400, 0, 1),
+('weapon_flashlight', '手电筒', 100, 0, 1),
+('weapon_golfclub', '高尔夫球棍', 600, 0, 1),
+('weapon_grenade', '手榴弹', 390, 0, 1),
+('weapon_grenadelauncher', '烟雾发生器', 10000, 0, 1),
+('weapon_gusenberg', '汤姆逊冲锋枪', 3860, 0, 1),
+('weapon_hammer', '锤子', 300, 0, 1),
+('weapon_hatchet', '斧头', 3000, 0, 1),
+('weapon_hazardcan', '有害汽油桶', 3000, 0, 1),
+('weapon_heavypistol', 'M1911手枪', 1130, 0, 1),
+('weapon_heavyshotgun', 'Saiga-12K霰弹枪', 6000, 0, 1),
+('weapon_heavysniper', '巴雷特反器材狙击步枪', 14000, 0, 1),
+('weapon_heavysniper_mk2', '巴雷特反器材狙击步枪改进型', 15000, 0, 1),
+('weapon_knife', '军用匕首', 240, 0, 1),
+('weapon_knuckle', '指虎', 50, 0, 1),
+('weapon_machete', '大砍刀', 400, 0, 1),
+('weapon_machinepistol', 'Tec-9冲锋枪', 1400, 0, 1),
+('weapon_marksmanpistol', '运动手枪', 2500, 0, 1),
+('weapon_marksmanrifle', 'M14精准射手步枪', 4500, 0, 1),
+('weapon_marksmanrifle_mk2', 'M14精准射手步枪改进型', 4300, 0, 1),
+('weapon_mg', 'PKM轻机枪', 9500, 0, 1),
+('weapon_microsmg', 'UZI冲锋枪', 1000, 0, 1),
+('weapon_minismg', '蝎式冲锋枪', 1390, 0, 1),
+('weapon_molotov', '莫洛托夫鸡尾酒', 750, 0, 1),
+('weapon_musket', '火绳枪', 9000, 0, 1),
+('weapon_nightstick', '警棍', 320, 0, 1),
+('weapon_petrolcan', '汽油桶', 3000, 0, 1),
+('weapon_pipebomb', '土制炸弹', 500, 0, 1),
+('weapon_pistol', 'P226手枪', 1100, 0, 1),
+('weapon_pistol50', '沙漠之鹰', 3000, 0, 1),
+('weapon_pistol_mk2', '格洛克手枪2', 900, 0, 1),
+('weapon_poolcue', '桌球棍', 3200, 0, 1),
+('weapon_pumpshotgun', '雷明顿霰弹枪', 3600, 0, 1),
+('weapon_pumpshotgun_mk2', '雷明顿霰弹枪改进型', 3600, 0, 1),
+('weapon_revolver', '0.5转轮', 2320, 0, 1),
+('weapon_revolver_mk2', '0.5转轮改进型', 2500, 0, 1),
+('weapon_sawnoffshotgun', '豆弹枪', 3000, 0, 1),
+('weapon_smg', 'MP5冲锋枪', 3000, 0, 1),
+('weapon_smg_mk2', 'MP5冲锋枪改进型', 3000, 0, 1),
+('weapon_smokegrenade', '烟雾弹', 250, 0, 1),
+('weapon_sniperrifle', '精准狙击步枪', 6800, 0, 1),
+('weapon_snowball', '板砖', 2630, 0, 1),
+('weapon_snspistol', '小口径转轮手枪', 840, 0, 1),
+('weapon_snspistol_mk2', '自卫手枪', 900, 0, 1),
+('weapon_specialcarbine', 'G36C自动步枪', 3000, 0, 1),
+('weapon_specialcarbine_mk2', 'G36C升级型自动步枪', 3000, 0, 1),
+('weapon_stone_hatchet', '石斧', 5000, 0, 1),
+('weapon_stungun', 'X26电击枪', 380, 0, 1),
+('weapon_switchblade', '折叠刀', 100, 0, 1),
+('weapon_vintagepistol', '老式手枪', 600, 0, 1),
+('weapon_wrench', '扳手', 1000, 0, 1),
+('weed', '未处理的大麻', 500, 0, 1),
 ('weed_in_pooch', 'Weed in pouch', 1, 0, 1),
-('wood', 'Wood', 1, 0, 1),
-('wool', 'Wool', 1, 0, 1);
+('whisky', '伏特加', 750, 0, 1),
+('whopper', '皇堡', 300, 0, 1),
+('whopper_jr', '迷你皇堡', 300, 0, 1),
+('wine', '葡萄酒', 750, 0, 1),
+('wood', '木头', 500, 0, 1),
+('wool', 'Wool', 1, 0, 1),
+('yogurt', '酸奶', 100, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -658,6 +1063,19 @@ INSERT INTO `licenses` (`type`, `label`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `m3_uber_points`
+--
+
+CREATE TABLE `m3_uber_points` (
+  `id` int(11) NOT NULL,
+  `identifier` varchar(255) DEFAULT NULL,
+  `point` int(11) DEFAULT NULL,
+  `money` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `owned_properties`
 --
 
@@ -724,6 +1142,18 @@ CREATE TABLE `phone_calls` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `phone_ch_reddit`
+--
+
+CREATE TABLE `phone_ch_reddit` (
+  `id` int(11) NOT NULL,
+  `redgkit` varchar(20) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `phone_messages`
 --
 
@@ -736,6 +1166,33 @@ CREATE TABLE `phone_messages` (
   `isRead` int(11) NOT NULL DEFAULT 0,
   `owner` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phone_reddit`
+--
+
+CREATE TABLE `phone_reddit` (
+  `id` int(11) NOT NULL,
+  `redgkit` varchar(20) DEFAULT NULL,
+  `reditsage` varchar(255) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phone_shops`
+--
+
+CREATE TABLE `phone_shops` (
+  `id` int(11) NOT NULL,
+  `store` varchar(255) NOT NULL,
+  `item` varchar(100) NOT NULL,
+  `price` int(11) NOT NULL,
+  `label` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -977,6 +1434,7 @@ CREATE TABLE `twitter_tweets` (
 --
 
 CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `identifier` varchar(255) NOT NULL,
   `accounts` longtext DEFAULT NULL,
   `group` varchar(50) DEFAULT 'user',
@@ -994,15 +1452,10 @@ CREATE TABLE `users` (
   `dateofbirth` varchar(10) DEFAULT NULL,
   `sex` varchar(1) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
-  `phone_number` varchar(10) DEFAULT NULL
+  `phone_number` varchar(10) DEFAULT NULL,
+  `jail_time` int(11) NOT NULL DEFAULT 0,
+  `jail_loc` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`identifier`, `accounts`, `group`, `inventory`, `job`, `job_grade`, `loadout`, `position`, `status`, `skin`, `is_dead`, `last_property`, `firstname`, `lastname`, `dateofbirth`, `sex`, `height`, `phone_number`) VALUES
-('steam:1100001121b6bdb', '{\"money\":4769994,\"bank\":52150,\"black_money\":0}', 'user', '{\"bread\":1}', 'unemployed', 0, '[]', '{\"x\":941.2,\"heading\":24.3,\"z\":77.0,\"y\":33.8}', '[{\"name\":\"drunk\",\"percent\":0.0,\"val\":0}]', '{\"sex\":0,\"age_2\":100,\"ears_2\":0,\"shoes_1\":75,\"beard_3\":0,\"age_1\":255,\"lip_thickness\":0,\"makeup_3\":255,\"bproof_1\":0,\"lipstick_1\":255,\"makeup_1\":255,\"eyebrows_1\":0,\"bodyb_3\":255,\"arms\":1,\"lefthand_1\":-1,\"bags_2\":0,\"decals_2\":0,\"hair_color_2\":0,\"nose_3\":0,\"glasses_2\":0,\"lefthand_2\":0,\"dad\":0,\"decals_1\":0,\"pants_1\":6,\"sun_1\":255,\"beard_2\":100,\"mask_1\":0,\"jaw_2\":0,\"tshirt_1\":23,\"blush_1\":255,\"makeup_2\":100,\"bodyb_2\":100,\"moles_2\":100,\"nose_5\":0,\"neckarm_1\":0,\"bags_1\":0,\"makeup_type\":0,\"chest_2\":100,\"eyebrows_4\":0,\"hair_color_1\":0,\"neckarm_2\":0,\"tshirt_2\":0,\"blemishes_2\":100,\"blemishes_1\":255,\"hair_1\":0,\"complexion_1\":255,\"torso_1\":7,\"righthand_1\":-1,\"chin_1\":0,\"nose_2\":0,\"mask_2\":0,\"helmet_2\":0,\"eyebrows_2\":100,\"helmet_1\":-1,\"hair_2\":0,\"torso_2\":2,\"chest_4\":0,\"beard_4\":0,\"pants_2\":0,\"complexion_2\":100,\"chest_1\":255,\"cheeks_1\":0,\"glasses_1\":-1,\"chin_3\":0,\"bodyb_1\":255,\"makeup_4\":255,\"arms_2\":0,\"chin_2\":0,\"skin_md_weight\":50,\"righthand_2\":0,\"shoes_2\":0,\"eyebrows_6\":0,\"cheeks_3\":0,\"nose_6\":0,\"eye_color\":0,\"lipstick_4\":0,\"moles_1\":255,\"lipstick_2\":100,\"chest_3\":0,\"nose_1\":0,\"beard_1\":255,\"mom\":21,\"blush_2\":100,\"cheeks_2\":0,\"ears_1\":0,\"eyebrows_3\":0,\"neck_thickness\":0,\"sun_2\":100,\"nose_4\":0,\"face_md_weight\":50,\"eye_squint\":0,\"bodyb_4\":100,\"blush_3\":0,\"lipstick_3\":0,\"jaw_1\":0,\"bproof_2\":0,\"eyebrows_5\":0,\"chin_4\":0}', 0, NULL, 'Brad', 'Xu', '12/31/1999', 'm', 76, '559-9149');
 
 -- --------------------------------------------------------
 
@@ -1011,16 +1464,10 @@ INSERT INTO `users` (`identifier`, `accounts`, `group`, `inventory`, `job`, `job
 --
 
 CREATE TABLE `user_lastcharacter` (
+  `id` int(11) NOT NULL,
   `license` varchar(255) NOT NULL,
   `charid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_lastcharacter`
---
-
-INSERT INTO `user_lastcharacter` (`license`, `charid`) VALUES
-('steam:1100001121b6bdb', 1);
 
 -- --------------------------------------------------------
 
@@ -2173,6 +2620,22 @@ INSERT INTO `weashops` (`id`, `zone`, `item`, `price`) VALUES
 (39, 'BlackWeashop', 'WEAPON_RAILGUN', 50000),
 (40, 'BlackWeashop', 'WEAPON_STICKYBOMB', 500);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `yellow_tweets`
+--
+
+CREATE TABLE `yellow_tweets` (
+  `id` int(11) NOT NULL,
+  `phone_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstname` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastname` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -2214,6 +2677,12 @@ ALTER TABLE `ammunition`
   ADD UNIQUE KEY `weapon_id` (`weapon_id`);
 
 --
+-- Indexes for table `bank_transfer`
+--
+ALTER TABLE `bank_transfer`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
 -- Indexes for table `billing`
 --
 ALTER TABLE `billing`
@@ -2246,6 +2715,28 @@ ALTER TABLE `fine_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `insto_accounts`
+--
+ALTER TABLE `insto_accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `insto_instas`
+--
+ALTER TABLE `insto_instas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_insto_instas_insto_accounts` (`authorId`);
+
+--
+-- Indexes for table `insto_likes`
+--
+ALTER TABLE `insto_likes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_insto_likes_insto_accounts` (`authorId`),
+  ADD KEY `FK_insto_likes_insto_instas` (`inapId`);
+
+--
 -- Indexes for table `inventory_glovebox`
 --
 ALTER TABLE `inventory_glovebox`
@@ -2256,7 +2747,7 @@ ALTER TABLE `inventory_glovebox`
 -- Indexes for table `inventory_hotbar`
 --
 ALTER TABLE `inventory_hotbar`
-  ADD PRIMARY KEY (`owner`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `inventory_trunk`
@@ -2290,6 +2781,12 @@ ALTER TABLE `licenses`
   ADD PRIMARY KEY (`type`);
 
 --
+-- Indexes for table `m3_uber_points`
+--
+ALTER TABLE `m3_uber_points`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `owned_properties`
 --
 ALTER TABLE `owned_properties`
@@ -2314,9 +2811,27 @@ ALTER TABLE `phone_calls`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `phone_ch_reddit`
+--
+ALTER TABLE `phone_ch_reddit`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `phone_messages`
 --
 ALTER TABLE `phone_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `phone_reddit`
+--
+ALTER TABLE `phone_reddit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `phone_shops`
+--
+ALTER TABLE `phone_shops`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2382,13 +2897,13 @@ ALTER TABLE `twitter_tweets`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`identifier`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_lastcharacter`
 --
 ALTER TABLE `user_lastcharacter`
-  ADD PRIMARY KEY (`license`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_licenses`
@@ -2547,6 +3062,12 @@ ALTER TABLE `weashops`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `yellow_tweets`
+--
+ALTER TABLE `yellow_tweets`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -2566,7 +3087,13 @@ ALTER TABLE `addon_inventory_items`
 -- AUTO_INCREMENT for table `ammunition`
 --
 ALTER TABLE `ammunition`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `bank_transfer`
+--
+ALTER TABLE `bank_transfer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `billing`
@@ -2587,10 +3114,34 @@ ALTER TABLE `fine_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
+-- AUTO_INCREMENT for table `insto_accounts`
+--
+ALTER TABLE `insto_accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `insto_instas`
+--
+ALTER TABLE `insto_instas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+
+--
+-- AUTO_INCREMENT for table `insto_likes`
+--
+ALTER TABLE `insto_likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+
+--
 -- AUTO_INCREMENT for table `inventory_glovebox`
 --
 ALTER TABLE `inventory_glovebox`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `inventory_hotbar`
+--
+ALTER TABLE `inventory_hotbar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `inventory_trunk`
@@ -2603,6 +3154,12 @@ ALTER TABLE `inventory_trunk`
 --
 ALTER TABLE `job_grades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `m3_uber_points`
+--
+ALTER TABLE `m3_uber_points`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `owned_properties`
@@ -2620,13 +3177,31 @@ ALTER TABLE `phone_app_chat`
 -- AUTO_INCREMENT for table `phone_calls`
 --
 ALTER TABLE `phone_calls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
+--
+-- AUTO_INCREMENT for table `phone_ch_reddit`
+--
+ALTER TABLE `phone_ch_reddit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `phone_messages`
 --
 ALTER TABLE `phone_messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `phone_reddit`
+--
+ALTER TABLE `phone_reddit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `phone_shops`
+--
+ALTER TABLE `phone_shops`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `phone_users_contacts`
@@ -2662,13 +3237,13 @@ ALTER TABLE `trunk_inventory`
 -- AUTO_INCREMENT for table `twitter_accounts`
 --
 ALTER TABLE `twitter_accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `twitter_likes`
 --
 ALTER TABLE `twitter_likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `twitter_tweets`
@@ -2677,10 +3252,22 @@ ALTER TABLE `twitter_tweets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_lastcharacter`
+--
+ALTER TABLE `user_lastcharacter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `user_licenses`
 --
 ALTER TABLE `user_licenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vehicle_display`

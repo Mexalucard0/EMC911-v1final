@@ -233,7 +233,7 @@ function getPlayerWeight()
 			local playerweight = cb
 			SendNUIMessage({
 				action = "setWeightText",
-				text =  "<strong>         "..tostring(playerweight).."/"..tostring(maxWeight).."KG<strong>"
+				text =  "<strong>         "..tostring(playerweight/1000).."/"..tostring(maxWeight/1000).."KG<strong>"
 			})
 			weight = playerweight
 			if weight >= maxWeight then

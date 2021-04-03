@@ -33,7 +33,7 @@ AddEventHandler('slerbaruletti:bettaa', function(osallistumismaksu, colour)
 				Wait(200)
 				maksu = osallistumismaksu*2
 				xPlayer.addAccountMoney('bank', maksu) 
-				TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'€')
+				TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'$')
 			else
 				TriggerClientEvent('esx:showNotification', _source, '~m~小球~w~ 停在了:  ~h~~u~ 黑色~h~~w~.')
 				TriggerClientEvent('esx:showNotification', _source, "~r~你输了!")
@@ -44,7 +44,7 @@ AddEventHandler('slerbaruletti:bettaa', function(osallistumismaksu, colour)
 			Wait(200)
 			maksu = osallistumismaksu*2
             xPlayer.addAccountMoney('bank', maksu) 
-            TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'€')
+            TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'$')
         else
 			TriggerClientEvent('esx:showNotification', _source, '~m~小球~w~ 停在了:  ~h~~r~红色~h~~w~.')
             TriggerClientEvent('esx:showNotification', _source, "~r~你输了.")
@@ -55,7 +55,7 @@ AddEventHandler('slerbaruletti:bettaa', function(osallistumismaksu, colour)
 				Wait(200)
 				maksu = osallistumismaksu*14
 				xPlayer.addAccountMoney('bank', maksu) 
-				TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'€')
+				TriggerClientEvent('esx:showNotification', _source, '~g~你赢了: ' ..maksu..'$')
 			else
 				TriggerClientEvent('esx:showNotification', _source, '~m~小球~w~ 停在了: ~h~~r~红色~h~~w~.~n~ 你输了')
         end

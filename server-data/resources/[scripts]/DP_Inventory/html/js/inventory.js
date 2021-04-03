@@ -372,7 +372,7 @@ function setCount(item) {
     }
 
     if (item.type === "item_account" || item.type === "item_money") {
-        //count = "€" + formatMoney(item.count);
+        //count = "$" + formatMoney(item.count);
 		count = formatMoney(item.count);
 	}
 
@@ -382,10 +382,10 @@ function setCount(item) {
 function setCost(item) {
     cost = item.price
     if (item.price == 0){
-        cost = "€" + item.price
+        cost = "$" + item.price
     }
     if (item.price > 0) {
-        cost = "€" + item.price
+        cost = "$" + item.price
     }
     return cost;
 }

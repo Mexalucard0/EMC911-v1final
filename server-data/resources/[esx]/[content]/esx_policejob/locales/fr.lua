@@ -117,7 +117,7 @@ Locales['fr'] = {
   ['confiscate'] = 'confisquer %s',
   ['confiscate_weapon'] = 'confisqué %s avec %s balles',
   ['confiscate_inv'] = 'confisquer %sx %s',
-  ['confiscate_dirty'] = 'confisquer argent sale: <span style="color:red;">€%s</span>',
+  ['confiscate_dirty'] = 'confisquer argent sale: <span style="color:red;">$%s</span>',
   ['you_confiscated'] = 'vous avez confisqué ~y~%sx~s~ ~b~%s~s~ à ~b~%s~s~',
   ['got_confiscated'] = '~y~%sx~s~ ~b~%s~s~ ont été confisqués par ~y~%s~s~',
   ['you_confiscated_account'] = 'vous avez confisqué ~g~$%s~s~ (%s) à ~b~%s~s~',
