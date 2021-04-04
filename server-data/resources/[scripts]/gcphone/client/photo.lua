@@ -1,11 +1,11 @@
-
+-- Author: Xinerki (https://forum.fivem.net/t/release-cellphone-camera/43599)
 
 phone = false
 phoneId = 0
 
 RegisterNetEvent('camera:open')
 AddEventHandler('camera:open', function()
-    CreateMobilePhone(0)
+    CreateMobilePhone(1)
 	CellCamActivate(true, true)
 	phone = true
     PhonePlayOut()
@@ -19,12 +19,10 @@ end
 
 Citizen.CreateThread(function()
 	DestroyMobilePhone()
-	local letSleep = true
 	while true do
 		Citizen.Wait(0)
 				
 		if IsControlJustPressed(1, 177) and phone == true then -- CLOSE PHONE
-			letSleep = false
 			DestroyMobilePhone()
 			phone = false
 			CellCamActivate(false, false)
@@ -36,13 +34,11 @@ Citizen.CreateThread(function()
 		end
 		
 		if IsControlJustPressed(1, 27) and phone == true then -- SELFIE MODE
-			letSleep = false
 			frontCam = not frontCam
 			CellFrontCamActivate(frontCam)
 		end
 			
 		if phone == true then
-			letSleep = false
 			HideHudComponentThisFrame(7)
 			HideHudComponentThisFrame(8)
 			HideHudComponentThisFrame(9)
@@ -57,8 +53,5 @@ Citizen.CreateThread(function()
 		-- Everything rendered inside here will appear on your phone.
 		
 		SetTextRenderId(1) -- NOTE: 1 is default
-		if letSleep then
-			Citizen.Wait(1500)
-		end
 	end
 end)

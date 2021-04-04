@@ -1,4 +1,6 @@
-
+--====================================================================================
+--  Function APP BANK
+--====================================================================================
 
 --[[
       Appeller SendNUIMessage({event = 'updateBankbalance', banking = xxxx})
@@ -6,12 +8,9 @@
 --]]
 
 -- ES / ESX Implementation
-inMenu                      = true
-ESX = nil
+
 local bank = 0
 local firstname = ''
-local lastname = ''
-
 function setBankBalance (value)
       bank = value
       SendNUIMessage({event = 'updateBankbalance', banking = bank})
@@ -55,37 +54,14 @@ end)
 --===============================================
 --==         Transfer Event                    ==
 --===============================================
-RegisterNUICallback('transfer', function(data)
-	TriggerServerEvent('gcPhone:transfer', data.to, data.amountt)
+-- route request to custom gcphone resource that handles phone numbers and offline functionality
+AddEventHandler('gcphone:bankTransferByPhoneNumber', function(data)
+      TriggerServerEvent('gcPhone:bankTransferByPhoneNumber', data.phoneNumber, data.amount)
+      TriggerServerEvent('bank:balance')
 end)
 
---===============================================
---==             Ad ve Soyad                   ==
---===============================================
-
-RegisterNetEvent("gcPhone:firstname")
-AddEventHandler("gcPhone:firstname", function(_firstname)
-  firstname = _firstname
-  SendNUIMessage({event = 'updateMyFirstname', firstname = firstname})
+-- route request to the banking resource, this is the nominal path
+AddEventHandler('gcphone:bankTransferById', function(data)
+      TriggerServerEvent('bank:transfer', tonumber(data.id), tonumber(data.amount))
+      TriggerServerEvent('bank:balance')
 end)
-
-RegisterNetEvent("gcPhone:lastname")
-AddEventHandler("gcPhone:lastname", function(_lastname)
-  lastname = _lastname
-  SendNUIMessage({event = 'updateMyListname', lastname = lastname})
-end)
-
-
-RegisterNetEvent("gcPhone:bank_getBilling")
-AddEventHandler("gcPhone:bank_getBilling", function(bankkkkk)
-  SendNUIMessage({event = 'bank_billingg', bankkkkk = bankkkkk})
-end)
-
-RegisterNUICallback('bank_getBilling', function(data, cb)
-  TriggerServerEvent('gcPhone:bank_getBilling', data.type, data.price, data.name)
-end)
-
-
-
-
-

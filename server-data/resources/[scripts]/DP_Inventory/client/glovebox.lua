@@ -155,7 +155,7 @@ end)
 
 function OpenCoffresInventoryMenu(plate, max, myVeh)
 	ESX.TriggerServerCallback("DP_Inventory_glovebox:getInventoryV", function(inventory)
-	text = _U("glovebox_info", plate, (inventory.weight / 100), (max / 100))
+	text = _U("glovebox_info", plate, (inventory.weight / 1000), (max / 1000))
 	data = {plate = plate, max = max, myVeh = myVeh, text = text}
 	TriggerEvent("DP_Inventory:openGloveboxInventory", data, inventory.blackMoney, inventory.cashMoney, inventory.items, inventory.weapons)
 	end, plate)

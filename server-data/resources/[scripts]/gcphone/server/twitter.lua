@@ -1,4 +1,6 @@
-
+--====================================================================================
+-- #Author: Jonathan D @ Gannon
+--====================================================================================
 
 ESX = nil
 
@@ -60,53 +62,6 @@ function TwitterGetFavotireTweets (accountId, cb)
   end
 end
 
-function TwitterUsersTweets (accountId, cb)
-  if accountId == nil then
-    MySQL.Async.fetchAll([===[
-      SELECT twitter_tweets.*,
-        twitter_accounts.username as author,
-        twitter_accounts.avatar_url as authorIcon
-      FROM twitter_tweets
-        LEFT JOIN twitter_accounts
-        ON twitter_tweets.authorId = twitter_accounts.id
-        WHERE twitter_tweets.authorId = @accountId
-      ORDER BY time DESC LIMIT 130
-      ]===], {['@accountId'] = accountId}, cb)
-  else
-    MySQL.Async.fetchAll([===[
-       SELECT twitter_tweets.*,
-        twitter_accounts.username as author,
-        twitter_accounts.avatar_url as authorIcon,
-		twitter_likes.id AS isLikes
-      FROM twitter_tweets
-        LEFT JOIN twitter_accounts
-          ON twitter_accounts.id = @accountId
-		LEFT JOIN twitter_likes 
-          ON twitter_tweets.id = twitter_likes.tweetId AND twitter_likes.authorId = @accountId
-      WHERE twitter_tweets.authorId = @accountId ORDER BY TIME DESC LIMIT 30
-    ]===], { ['@accountId'] = accountId }, cb)
-  end
-end
-
-RegisterServerEvent('gcPhone:twitter_getUserTweets')
-AddEventHandler('gcPhone:twitter_getUserTweets', function(username, password)
-  local sourcePlayer = tonumber(source)
-  if username ~= nil and username ~= "" and password ~= nil and password ~= "" then
-    getUser(username, password, function (user)
-      local accountId = user and user.id
-      TwitterUsersTweets(accountId, function (tweets)
-        TriggerClientEvent('gcPhone:twitter_getUserTweets', sourcePlayer, tweets)
-      end)
-    end)
-  else
-    TwitterUsersTweets(nil, function (tweets)
-      TriggerClientEvent('gcPhone:twitter_getUserTweets', sourcePlayer, tweets)
-    end)
-  end
-end)
-
-
-
 function getUser(username, password, cb)
   MySQL.Async.fetchAll("SELECT id, username as author, avatar_url as authorIcon FROM twitter_accounts WHERE twitter_accounts.username = @username AND twitter_accounts.password = @password", {
     ['@username'] = username,
@@ -116,18 +71,17 @@ function getUser(username, password, cb)
   end)
 end
 
-function TwitterPostTweet (username, password, message, image, sourcePlayer, realUser, cb)
+function TwitterPostTweet (username, password, message, sourcePlayer, realUser, cb)
   getUser(username, password, function (user)
     if user == nil then
       if sourcePlayer ~= nil then
-        TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
+        TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
       end
       return
     end
-    MySQL.Async.insert("INSERT INTO twitter_tweets (`authorId`, `message`, `image`, `realUser`) VALUES(@authorId, @message, @image, @realUser);", {
+    MySQL.Async.insert("INSERT INTO twitter_tweets (`authorId`, `message`, `realUser`) VALUES(@authorId, @message, @realUser);", {
       ['@authorId'] = user.id,
       ['@message'] = message,
-	  ['@image'] = image,
       ['@realUser'] = realUser
     }, function (id)
       MySQL.Async.fetchAll('SELECT * from twitter_tweets WHERE id = @id', {
@@ -147,7 +101,7 @@ function TwitterToogleLike (username, password, tweetId, sourcePlayer)
   getUser(username, password, function (user)
     if user == nil then
       if sourcePlayer ~= nil then
-        TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
+        TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
       end
       return
     end
@@ -191,22 +145,6 @@ function TwitterToogleLike (username, password, tweetId, sourcePlayer)
   end)
 end
 
-
-function TwitteUsersDelete (username, password, tweetId, sourcePlayer)
-  getUser(username, password, function (user)
-    if user == nil then
-      if sourcePlayer ~= nil then
-        TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
-      end
-      return
-    end
-    MySQL.Async.execute('DELETE FROM twitter_tweets WHERE id = @id', {
-      ['@id'] = tweetId,
-    }, function ()
-	end)
-  end)
-end
-
 function TwitterCreateAccount(username, password, avatarUrl, cb)
   MySQL.Async.insert('INSERT IGNORE INTO twitter_accounts (`username`, `password`, `avatar_url`) VALUES(@username, @password, @avatarUrl)', {
     ['username'] = username,
@@ -216,11 +154,11 @@ function TwitterCreateAccount(username, password, avatarUrl, cb)
 end
 -- ALTER TABLE `twitter_accounts`	CHANGE COLUMN `username` `username` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci';
 
-function TwitterShowError (sourcePlayer, title, message, image)
-  TriggerClientEvent('gcPhone:twitter_showError', sourcePlayer, message, image)
+function TwitterShowError (sourcePlayer, title, message)
+  TriggerClientEvent('gcPhone:twitter_showError', sourcePlayer, message)
 end
-function TwitterShowSuccess (sourcePlayer, title, message, image)
-  TriggerClientEvent('gcPhone:twitter_showSuccess', sourcePlayer, title, message, image)
+function TwitterShowSuccess (sourcePlayer, title, message)
+  TriggerClientEvent('gcPhone:twitter_showSuccess', sourcePlayer, title, message)
 end
 
 RegisterServerEvent('gcPhone:twitter_login')
@@ -228,9 +166,9 @@ AddEventHandler('gcPhone:twitter_login', function(username, password)
   local sourcePlayer = tonumber(source)
   getUser(username, password, function (user)
     if user == nil then
-      TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
+      TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
     else
-      TwitterShowSuccess(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_SUCCESS')
+      TwitterShowSuccess(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_LOGIN_SUCCESS')
       TriggerClientEvent('gcPhone:twitter_setAccount', sourcePlayer, username, password, user.authorIcon)
     end
   end)
@@ -241,7 +179,7 @@ AddEventHandler('gcPhone:twitter_changePassword', function(username, password, n
   local sourcePlayer = tonumber(source)
   getUser(username, password, function (user)
     if user == nil then
-      TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_NEW_PASSWORD_ERROR')
+      TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_NEW_PASSWORD_ERROR')
     else
       MySQL.Async.execute("UPDATE `twitter_accounts` SET `password`= @newPassword WHERE twitter_accounts.username = @username AND twitter_accounts.password = @password", {
         ['@username'] = username,
@@ -250,9 +188,9 @@ AddEventHandler('gcPhone:twitter_changePassword', function(username, password, n
       }, function (result)
         if (result == 1) then
           TriggerClientEvent('gcPhone:twitter_setAccount', sourcePlayer, username, newPassword, user.authorIcon)
-          TwitterShowSuccess(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_NEW_PASSWORD_SUCCESS')
+          TwitterShowSuccess(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_NEW_PASSWORD_SUCCESS')
         else
-          TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_NEW_PASSWORD_ERROR')
+          TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_NEW_PASSWORD_ERROR')
         end
       end)
     end
@@ -266,9 +204,9 @@ AddEventHandler('gcPhone:twitter_createAccount', function(username, password, av
   TwitterCreateAccount(username, password, avatarUrl, function (id)
     if (id ~= 0) then
       TriggerClientEvent('gcPhone:twitter_setAccount', sourcePlayer, username, password, avatarUrl)
-      TwitterShowSuccess(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_ACCOUNT_CREATE_SUCCESS')
+      TwitterShowSuccess(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_ACCOUNT_CREATE_SUCCESS')
     else
-      TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_ACCOUNT_CREATE_ERROR')
+      TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_ACCOUNT_CREATE_ERROR')
     end
   end)
 end)
@@ -307,14 +245,12 @@ AddEventHandler('gcPhone:twitter_getFavoriteTweets', function(username, password
   end
 end)
 
-
-
 RegisterServerEvent('gcPhone:twitter_postTweets')
-AddEventHandler('gcPhone:twitter_postTweets', function(username, password, message, image)
+AddEventHandler('gcPhone:twitter_postTweets', function(username, password, message)
   local _source = source
   local sourcePlayer = tonumber(_source)
   local srcIdentifier = ESX.GetPlayerFromId(_source).identifier
-  TwitterPostTweet(username, password, message, image, sourcePlayer, srcIdentifier)
+  TwitterPostTweet(username, password, message, sourcePlayer, srcIdentifier)
 end)
 
 RegisterServerEvent('gcPhone:twitter_toogleLikeTweet')
@@ -323,11 +259,6 @@ AddEventHandler('gcPhone:twitter_toogleLikeTweet', function(username, password, 
   TwitterToogleLike(username, password, tweetId, sourcePlayer)
 end)
 
-RegisterServerEvent('gcPhone:twitter_usersDeleteTweet')
-AddEventHandler('gcPhone:twitter_usersDeleteTweet', function(username, password, tweetId)
-  local sourcePlayer = tonumber(source)
-  TwitteUsersDelete(username, password, tweetId, sourcePlayer)
-end)
 
 RegisterServerEvent('gcPhone:twitter_setAvatarUrl')
 AddEventHandler('gcPhone:twitter_setAvatarUrl', function(username, password, avatarUrl)
@@ -339,41 +270,50 @@ AddEventHandler('gcPhone:twitter_setAvatarUrl', function(username, password, ava
   }, function (result)
     if (result == 1) then
       TriggerClientEvent('gcPhone:twitter_setAccount', sourcePlayer, username, password, avatarUrl)
-      TwitterShowSuccess(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_AVATAR_SUCCESS')
+      TwitterShowSuccess(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_AVATAR_SUCCESS')
     else
-      TwitterShowError(sourcePlayer, 'Twitter Info', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
+      TwitterShowError(sourcePlayer, '推特通知', 'APP_TWITTER_NOTIF_LOGIN_ERROR')
     end
   end)
 end)
 
 
---[[
-  Discord WebHook
-  set discord_webhook 'https//....' in config.cfg
---]]
+-- DIscord Webhook must be enabled in the config.lua
 AddEventHandler('gcPhone:twitter_newTweets', function (tweet)
   -- print(json.encode(tweet))
-  local discord_webhook = GetConvar('discord_webhook', 'https://discord.com/api/webhooks/812318095115812885/mlGXpIuYMWHaB39pMudDt_BNbGavYQShiiH5GxrxS0v6cRTiUZgvIeNWjQDXmwbMpxtV')
-  if discord_webhook == 'https://discord.com/api/webhooks/812318095115812885/mlGXpIuYMWHaB39pMudDt_BNbGavYQShiiH5GxrxS0v6cRTiUZgvIeNWjQDXmwbMpxtV' then
+  local discord_webhook = 'https://discord.com/api/webhooks/' -- Set Discord Webhook. See https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+  if discord_webhook == '' then
     return
   end
   local headers = {
     ['Content-Type'] = 'application/json'
   }
-  local data = {
-    ["username"] = tweet.author,
-	["avatar_url"] = tweet.authorIcon,
-    ["embeds"] = {{
-      ["color"] = 1942002
-    }}
-  }
+
+
+  -- print(json.encode(tweet))
   local isHttp = string.sub(tweet.message, 0, 7) == 'http://' or string.sub(tweet.message, 0, 8) == 'https://'
   local ext = string.sub(tweet.message, -4)
-  local isImg = ext == '.png' or ext == '.pjg' or ext == '.gif' or string.sub(tweet.message, -5) == '.jpeg'
+  -- print(ext)
+  local isImg = ext == '.png' or ext == '.jpg' or ext == '.gif' or string.sub(tweet.message, -5) == '.jpeg'
 
-    data['embeds'][1]['title'] = tweet.author .. " adlı kullanıcı yeni post attı!"
-    data['embeds'][1]['image'] = { ['url'] = tweet.image }
-	data['embeds'][1]['description'] = tweet.message
+  local data = {
+    {
+      ["color"] = "1942002",
+      ["title"] = _U('new_tweet'),
+      ["footer"] = {
+          ["text"] = tweet.author,
+          ["icon_url"] = tweet.authorIcon,
+      },
+    }
+  }
 
-  PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', json.encode(data), headers)
+  if (isHttp and isImg) and true then
+    data[1]['image'] = { ['url'] = tweet.message }
+  else
+    data[1]['description'] = tweet.message
+  end
+
+  if Config.UseTwitterLogging then
+    PerformHttpRequest(discord_webhook, function(err, text, headers) end, 'POST', PerformHttpRequest(discord_webhook, function(err, text, headers) print(err) end, 'POST', json.encode({username = "Twitter", embeds = data}), headers), headers)
+  end
 end)

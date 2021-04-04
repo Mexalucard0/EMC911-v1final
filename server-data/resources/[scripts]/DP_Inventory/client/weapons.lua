@@ -43,82 +43,384 @@ AddEventHandler('DP_Inventory:removeCurrentWeapon', function()
 end)
 
 local weapons = {
-	[tostring(GetHashKey('WEAPON_CARBINERIFLE'))] = { 
-		['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM'),
-		['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
-		['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
-		['mag'] = GetHashKey('COMPONENT_CARBINERIFLE_CLIP_02'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
+    [tostring(GetHashKey('weapon_combatpistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_COMBATPISTOL_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
     },
-    [tostring(GetHashKey('WEAPON_PISTOL'))] = { 
-		['mag'] = GetHashKey('COMPONENT_PISTOL_CLIP_02'),
-		['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP_02'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH')
+        
+    [tostring(GetHashKey('weapon_pistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_PISTOL_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP_02'),
     },
-    [tostring(GetHashKey('WEAPON_SNIPERRIFLE'))] = { 
-        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MAX'),
-		['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02')
+        
+    [tostring(GetHashKey('weapon_pistol_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_PISTOL_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_PI_RAIL'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH_02'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP_02'),
     },
-    [tostring(GetHashKey('WEAPON_PUMPSHOTGUN'))] = { 
-		['suppressor'] = GetHashKey('COMPONENT_AT_SR_SUPP'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
+        
+    [tostring(GetHashKey('weapon_appistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_APPISTOL_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
     },
-    [tostring(GetHashKey('WEAPON_SPECIALCARBINE'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_SPECIALCARBINE_CLIP_02'),
-        ['drummag'] = GetHashKey('COMPONENT_SPECIALCARBINE_CLIP_02'),
+        
+    [tostring(GetHashKey('weapon_stungun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_pistol50'))] = {
+        ['mag'] = GetHashKey('COMPONENT_PISTOL50_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
         ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
-        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM'),
-        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
     },
-    [tostring(GetHashKey('WEAPON_ASSAULTRIFLE'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_ASSAULTRIFLE_CLIP_02'),
-        ['drummag'] = GetHashKey('COMPONENT_ASSAULTRIFLE_CLIP_03'),
-        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
-        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO'),
-        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
+        
+    [tostring(GetHashKey('weapon_snspistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_SNSPISTOL_CLIP_02'),
     },
-    [tostring(GetHashKey('WEAPON_ASSAULTSMG'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_ASSAULTSMG_CLIP_02'),
-        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
-        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
+        
+    [tostring(GetHashKey('weapon_snspistol_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_REVOLVER_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_PI_RAIL_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
     },
-    [tostring(GetHashKey('WEAPON_MICROSMG'))] = { 
+        
+    [tostring(GetHashKey('weapon_heavypistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_HEAVYPISTOL_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
+    },
+        
+    [tostring(GetHashKey('weapon_vintagepistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_VINTAGEPISTOL_CLIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_flaregun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_marksmanpistol'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_revolver'))] = {
+        ['mag'] = GetHashKey('COMPONENT_REVOLVER_CLIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_revolver_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_REVOLVER_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO_MK2'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+    },
+        
+    [tostring(GetHashKey('weapon_doubleaction'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_ceramicpistol'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_microsmg'))] = {
         ['mag'] = GetHashKey('COMPONENT_MICROSMG_CLIP_02'),
-        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
         ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH')
+        ['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
     },
-    [tostring(GetHashKey('WEAPON_SMG'))] = { 
+        
+    [tostring(GetHashKey('weapon_smg'))] = {
         ['mag'] = GetHashKey('COMPONENT_SMG_CLIP_02'),
         ['drummag'] = GetHashKey('COMPONENT_SMG_CLIP_03'),
-        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
         ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO_02'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
-    },
-    [tostring(GetHashKey('WEAPON_APPISTOL'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_APPISTOL_CLIP_02'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
         ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH')
     },
-    [tostring(GetHashKey('WEAPON_COMBATPISTOL'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_COMBATPISTOL_CLIP_02'),
+        
+    [tostring(GetHashKey('weapon_smg_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_SMG_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SIGHTS_SMG'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
         ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH')
     },
-    [tostring(GetHashKey('WEAPON_PISTOL50'))] = { 
-        ['mag'] = GetHashKey('COMPONENT_PISTOL50_CLIP_02'),
+        
+    [tostring(GetHashKey('weapon_assaultsmg'))] = {
+        ['mag'] = GetHashKey('COMPONENT_ASSAULTSMG_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
         ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_PI_FLSH')
     },
-    [tostring(GetHashKey('WEAPON_ADVANCEDRIFLE'))] = { 
-        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        
+    [tostring(GetHashKey('weapon_combatpdw'))] = {
+        ['mag'] = GetHashKey('COMPONENT_COMBATPDW_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_COMBATPDW_CLIP_03'),
         ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_machinepistol'))] = {
+        ['mag'] = GetHashKey('COMPONENT_MACHINEPISTOL_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_MACHINEPISTOL_CLIP_03'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_PI_SUPP'),
+    },
+        
+    [tostring(GetHashKey('weapon_minismg'))] = {
+        ['mag'] = GetHashKey('COMPONENT_MINISMG_CLIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_gusenberg'))] = {
+        ['mag'] = GetHashKey('COMPONENT_GUSENBERG_CLIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_pumpshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_pumpshotgun_mk2'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_sawnoffshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_assaultshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_bullpupshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_musket'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_heavyshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_dbshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_autoshotgun'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_assaultrifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_ASSAULTRIFLE_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_ASSAULTRIFLE_CLIP_03	'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MACRO'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_assaultrifle_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_ASSAULTRIFLE_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM_MK2'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_carbinerifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_CARBINERIFLE_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_CARBINERIFLE_CLIP_03'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_carbinerifle_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_CARBINERIFLE_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM_MK2'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_advancedrifle'))] = {
         ['mag'] = GetHashKey('COMPONENT_ADVANCEDRIFLE_CLIP_02'),
-		['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH')
-    }
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH	'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+    },
+        
+    [tostring(GetHashKey('weapon_specialcarbine'))] = {
+        ['mag'] = GetHashKey('COMPONENT_SPECIALCARBINE_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_SPECIALCARBINE_CLIP_03'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_specialcarbine_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_SPECIALCARBINE_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM_MK2'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP_02'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_bullpuprifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_BULLPUPRIFLE_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_bullpuprifle_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_BULLPUPRIFLE_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL_MK2	'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_compactrifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_COMPACTRIFLE_CLIP_02'),
+        ['drummag'] = GetHashKey('COMPONENT_COMPACTRIFLE_CLIP_03'),
+    },
+        
+    [tostring(GetHashKey('weapon_mg'))] = {
+        ['mag'] = GetHashKey('COMPONENT_MG_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_combatmg'))] = {
+        ['mag'] = GetHashKey('COMPONENT_COMBATMG_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_combatmg_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_COMBATMG_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MEDIUM_MK2'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_sniperrifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_SNIPERRIFLE_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MAX'),
+    },
+        
+    [tostring(GetHashKey('weapon_heavysniper'))] = {
+        ['mag'] = GetHashKey('COMPONENT_HEAVYSNIPER_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MAX'),
+    },
+        
+    [tostring(GetHashKey('weapon_heavysniper_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_HEAVYSNIPER_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_MAX'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_SR_SUPP_03'),
+    },
+        
+    [tostring(GetHashKey('weapon_marksmanrifle'))] = {
+        ['mag'] = GetHashKey('COMPONENT_MARKSMANRIFLE_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_LARGE_FIXED_ZOOM'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_marksmanrifle_mk2'))] = {
+        ['mag'] = GetHashKey('COMPONENT_MARKSMANRIFLE_MK2_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_LARGE_FIXED_ZOOM_MK2'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['suppressor'] = GetHashKey('COMPONENT_AT_AR_SUPP'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP_02'),
+    },
+        
+    [tostring(GetHashKey('weapon_grenadelauncher'))] = {
+        ['mag'] = GetHashKey('COMPONENT_GRENADELAUNCHER_CLIP_02'),
+        ['scope'] = GetHashKey('COMPONENT_AT_SCOPE_SMALL'),
+        ['flashlight'] = GetHashKey('COMPONENT_AT_AR_FLSH'),
+        ['grip'] = GetHashKey('COMPONENT_AT_AR_AFGRIP'),
+    },
+        
+    [tostring(GetHashKey('weapon_firework'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_grenade'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_bzgas'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_smokegrenade'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_molotov'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_snowball'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_pipebomb'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_ball'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_flare'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_petrolcan'))] = {
+    },
+        
+    [tostring(GetHashKey('gadget_parachute'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_fireextinguisher'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_hazardcan'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_nightstick'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_knife'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_dagger'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_bat'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_bottle'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_crowbar'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_flashlight'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_golfclub'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_hammer'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_hatchet'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_knuckle'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_machete'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_switchblade'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_wrench'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_battleaxe'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_poolcue'))] = {
+    },
+        
+    [tostring(GetHashKey('weapon_stone_hatchet'))] = {
+    },        
 }
 
 RegisterNetEvent('DP_Inventory:useAttach')
@@ -183,8 +485,8 @@ RegisterKey('keyboard',"BACKSLASH",
                                     disableCarMovement = false,
                                     disableMouse = false,
                                     disableCombat = false,
-                                },
-                            }, function(status)
+                            },
+                        }, function(status)
                                 if not status then
                                     RemoveWeaponComponentFromPed(playerPed, hash, weapons[tostring(hash)][currentWepAttachs[i]])
                                     ESX.TriggerServerCallback('DP_Inventory:addPlayerItem', function(cb)end, currentWepAttachs[i], 1)

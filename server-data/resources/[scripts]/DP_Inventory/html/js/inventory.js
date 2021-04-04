@@ -402,7 +402,7 @@ function setCost(item) {
 //}
 
 function formatMoney(number) {
-	return number.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' });
+	return number.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
 
 //USD FORMAT BELOW HERE

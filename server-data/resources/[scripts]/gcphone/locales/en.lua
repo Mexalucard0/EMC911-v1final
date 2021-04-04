@@ -1,15 +1,15 @@
 Locales['en'] = {
-    ["mission_row"] = "Mission Row Police",
-    ["phone_booth"] = "Phone Booth",
-    ["key_answer"] = "Press ~INPUT_PICKUP~ to answer the phone",
-    ["new_message"] = "~o~New message",
-    ["new_message_from"] = "~o~New message from ~y~%s",
-    ["new_message_transmitter"] = "~o~New message from ~g~%s",
-    ["use_fixed"] = "~g~%s's phone ~o~(%s) ~n~~INPUT_PICKUP~~w~ Use phone",
-    ["no_item"] = "No phone",
-	
-	-- Vale
-	["vale_get"] = "You bought your car for $ 100",
-	["vale_gete"] = "You Can Use Only One Valet Service At A Time.",
-	["vale_getr"] = "Your Vehicle Is Already Away Marked On The Map."
+    ["mission_row"] = "密申罗警局",
+    ["phone_booth"] = "电话亭",
+    ["key_answer"] = "按下 ~INPUT_PICKUP~ 接听电话",
+    ["new_message"] = "~o~新消息",
+    ["new_message_from"] = "~o~来自~y~%s的新消息",
+    ["new_message_transmitter"] = "~o~来自~g~%s的新消息",
+    ["use_fixed"] = "~g~%s的公共电话 ~o~(%s) ~n~~INPUT_PICKUP~~w~ 使用电话",
+    
+    -- Social
+    ["new_tweet"] = "未读新推特！",
+
+    -- Warning
+    ["no_phone"] = "你还没有~r~手机~s~."
 }
