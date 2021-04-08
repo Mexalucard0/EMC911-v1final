@@ -15,7 +15,7 @@ function GenerateUniquePhoneNumber()
 		--local num = '555' .. math.random(0001,9999)
 		local numBase0 = math.random(555,555)
    		local numBase1 = math.random(0,9999)
-		local rand = string.format("%03d%04d", numBase0, numBase1 )
+		local rand = string.format("%03d-%04d", numBase0, numBase1 )
       --  --('Recherche ... : ' .. rand)
         local count = MySQL.Sync.fetchScalar("SELECT COUNT(phone_number) FROM sim WHERE phone_number = @phone_number", { ['@phone_number'] = rand })
         if count < 1 then
